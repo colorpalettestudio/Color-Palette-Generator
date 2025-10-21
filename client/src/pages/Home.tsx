@@ -34,16 +34,37 @@ const generateInitialPalette = (count: number): ColorState[] => {
 
 export default function Home() {
   const [palette, setPalette] = useState<ColorState[]>(generateInitialPalette(5));
+  const [history, setHistory] = useState<ColorState[][]>([generateInitialPalette(5)]);
+  const [historyIndex, setHistoryIndex] = useState(0);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const paletteRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
+  const updatePalette = (newPalette: ColorState[]) => {
+    setPalette(newPalette);
+    const newHistory = history.slice(0, historyIndex + 1);
+    newHistory.push(newPalette);
+    setHistory(newHistory);
+    setHistoryIndex(newHistory.length - 1);
+  };
+
+  const handleUndo = () => {
+    if (historyIndex > 0) {
+      const newIndex = historyIndex - 1;
+      setHistoryIndex(newIndex);
+      setPalette(history[newIndex]);
+      toast({
+        title: "Undone",
+        description: "Reverted to previous palette state.",
+      });
+    }
+  };
+
   const handleShuffle = () => {
-    setPalette((prev) =>
-      prev.map((item) =>
-        item.isLocked ? item : { ...item, color: generateRandomColor() }
-      )
+    const newPalette = palette.map((item) =>
+      item.isLocked ? item : { ...item, color: generateRandomColor() }
     );
+    updatePalette(newPalette);
   };
 
   useEffect(() => {
@@ -52,18 +73,24 @@ export default function Home() {
         e.preventDefault();
         handleShuffle();
       }
+      
+      if ((e.metaKey || e.ctrlKey) && e.key === 'z' && !e.shiftKey) {
+        e.preventDefault();
+        handleUndo();
+      }
     };
 
     document.addEventListener('keydown', handleKeyPress);
     return () => document.removeEventListener('keydown', handleKeyPress);
-  }, []);
+  }, [historyIndex, history, palette]);
 
   useEffect(() => {
     const selectedPalette = localStorage.getItem('selectedPalette');
     if (selectedPalette) {
       try {
         const colors = JSON.parse(selectedPalette);
-        setPalette(colors.map((color: string) => ({ color, isLocked: false })));
+        const newPalette = colors.map((color: string) => ({ color, isLocked: false }));
+        updatePalette(newPalette);
         localStorage.removeItem('selectedPalette');
         toast({
           title: "Palette Loaded!",
@@ -77,32 +104,35 @@ export default function Home() {
 
   const handleAddColor = () => {
     if (palette.length < MAX_COLORS) {
-      setPalette((prev) => [...prev, { color: generateRandomColor(), isLocked: false }]);
+      const newPalette = [...palette, { color: generateRandomColor(), isLocked: false }];
+      updatePalette(newPalette);
     }
   };
 
   const handleClear = () => {
-    setPalette(generateInitialPalette(5));
+    const newPalette = generateInitialPalette(5);
+    updatePalette(newPalette);
   };
 
   const handleToggleLock = (index: number) => {
-    setPalette((prev) =>
-      prev.map((item, i) =>
-        i === index ? { ...item, isLocked: !item.isLocked } : item
-      )
+    const newPalette = palette.map((item, i) =>
+      i === index ? { ...item, isLocked: !item.isLocked } : item
     );
+    updatePalette(newPalette);
   };
 
   const handleRemoveColor = (index: number) => {
     if (palette.length > MIN_COLORS) {
-      setPalette((prev) => prev.filter((_, i) => i !== index));
+      const newPalette = palette.filter((_, i) => i !== index);
+      updatePalette(newPalette);
     }
   };
 
   const handleColorChange = (index: number, newColor: string) => {
-    setPalette((prev) =>
-      prev.map((item, i) => (i === index ? { ...item, color: newColor } : item))
+    const newPalette = palette.map((item, i) => 
+      (i === index ? { ...item, color: newColor } : item)
     );
+    updatePalette(newPalette);
   };
 
   const handleCopyColor = async (color: string) => {
@@ -232,7 +262,8 @@ export default function Home() {
   };
 
   const handleSelectPalette = (colors: string[]) => {
-    setPalette(colors.map((color) => ({ color, isLocked: false })));
+    const newPalette = colors.map((color) => ({ color, isLocked: false }));
+    updatePalette(newPalette);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     toast({
       title: "Palette Loaded!",
