@@ -33,6 +33,17 @@ async function seedLikes() {
   const allPalettes = PRESET_PALETTES.map(p => p.name);
   
   for (const paletteName of allPalettes) {
+    // Sunset Glow is #1 with exactly 29k likes
+    if (paletteName === 'Sunset Glow') {
+      const likeCount = 29000;
+      await sql`
+        INSERT INTO palette_likes (palette_name, like_count)
+        VALUES (${paletteName}, ${likeCount})
+      `;
+      console.log(`✓ ${paletteName}: ${likeCount.toLocaleString()} likes 🏆 #1`);
+      continue;
+    }
+    
     const isTopPalette = TOP_PALETTES.includes(paletteName);
     
     // Top palettes get 14,000-19,000 likes
