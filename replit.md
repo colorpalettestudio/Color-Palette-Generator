@@ -41,9 +41,12 @@ Preferred communication style: Simple, everyday language.
 
 **Development Setup**: Vite middleware integration for HMR (Hot Module Replacement) during development. Production serves static built files.
 
-**API Structure**: Minimal - currently configured with route registration pattern but no active API endpoints. The `/api` prefix is reserved for future backend functionality.
+**API Structure**: RESTful API endpoints for palette like functionality:
+- `GET /api/palette-likes` - Fetch all palette like counts
+- `POST /api/palette-likes/:paletteName/like` - Like a palette (increments count)
+- `POST /api/palette-likes/:paletteName/unlike` - Unlike a palette (decrements count)
 
-**Session Management**: Infrastructure present (connect-pg-simple) but not actively used since the tool operates client-side.
+**Session Management**: Infrastructure present (connect-pg-simple) but not actively used.
 
 ### Data Storage Solutions
 
@@ -51,12 +54,17 @@ Preferred communication style: Simple, everyday language.
 - Saved user palettes
 - User preferences
 - Selected palette state (when navigating from library)
+- User's liked palettes (for tracking which palettes the user has liked)
 
-**Database**: PostgreSQL via Neon serverless configured with Drizzle ORM, but currently only contains a basic users table schema. Database is provisioned but not actively used - the application operates entirely client-side.
+**Database**: PostgreSQL via Neon serverless with Drizzle ORM, actively used for:
+- Palette like counts (global, persistent across all users)
+- Users table (schema defined but not actively used)
 
-**Data Models** (defined but unused):
-- Users table with id, username, password fields
+**Data Models**:
+- `users` table with id, username, password fields (defined but unused)
+- `palette_likes` table with id, palette_name (unique), and like_count fields
 - Schema validation via drizzle-zod
+- Database-backed storage implementation using DbStorage class
 
 ### Color Generation & Manipulation
 
@@ -88,7 +96,20 @@ Preferred communication style: Simple, everyday language.
 - PNG Export: Captures palette visual using html2canvas
 - PDF Export: Generates document with jsPDF including color swatches and HEX codes
 
-**Preset Library**: 44 curated palettes stored in `lib/palettes.ts` displayed in grid layout with click-to-load functionality.
+**Preset Library**: 135 curated palettes stored in `lib/palettes.ts` displayed in grid layout with click-to-load functionality.
+
+**Palette Likes System**:
+- Heart icon on each palette card showing global like count
+- Click to like/unlike palettes (optimistic UI updates)
+- localStorage tracks user's individual liked palettes
+- Database stores global like counts persistently
+- Error handling with rollback on failed API calls
+- Toast notifications for errors
+
+**Sorting Options**:
+- Most Loved: Sort by like count (descending)
+- A-Z: Alphabetical by palette name
+- Newest: Reverse order (latest first)
 
 ### SEO & Content Strategy
 
