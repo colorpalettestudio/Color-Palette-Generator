@@ -9,6 +9,13 @@ interface PaletteLibraryCardProps {
   onLike?: (e: React.MouseEvent) => void;
 }
 
+function formatLikeCount(count: number): string {
+  if (count >= 1000) {
+    return Math.round(count / 1000) + 'k';
+  }
+  return count.toString();
+}
+
 export default function PaletteLibraryCard({ name, colors, onClick, likeCount = 0, isLiked = false, onLike }: PaletteLibraryCardProps) {
   return (
     <div
@@ -40,7 +47,7 @@ export default function PaletteLibraryCard({ name, colors, onClick, likeCount = 
               <Heart 
                 className={`w-4 h-4 ${isLiked ? 'fill-red-500 text-red-500' : ''}`}
               />
-              <span>{likeCount}</span>
+              <span>{formatLikeCount(likeCount)}</span>
             </button>
           )}
         </div>
