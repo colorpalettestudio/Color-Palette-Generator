@@ -63,9 +63,15 @@ function randomInRange(min: number, max: number): number {
   return Math.random() * (max - min) + min;
 }
 
-function varyColor(hue: number, baseSat: number, baseLightness: number): string {
+function varyColor(hue: number, baseSat: number, baseLightness: number, satMin?: number, satMax?: number): string {
   // Apply variation: ±20% saturation, ±15% lightness
-  const sat = Math.max(0, Math.min(100, baseSat + randomInRange(-20, 20)));
+  let sat = baseSat + randomInRange(-20, 20);
+  
+  // Apply saturation constraints if provided
+  if (satMin !== undefined) sat = Math.max(satMin, sat);
+  if (satMax !== undefined) sat = Math.min(satMax, sat);
+  
+  sat = Math.max(0, Math.min(100, sat));
   const lightness = Math.max(10, Math.min(90, baseLightness + randomInRange(-15, 15)));
   
   return tinycolor({ h: hue, s: sat, l: lightness }).toHexString().toUpperCase();
@@ -86,12 +92,13 @@ function generateAnalogousPalette(baseHue: number): string[] {
   const baseSat = randomInRange(40, 80);
   const baseLightness = randomInRange(45, 65);
   
+  // Analogous: ±20-40° hue shift
   const colors = [
     varyColor(baseHue, baseSat, baseLightness),
-    varyColor((baseHue + randomInRange(15, 25)) % 360, baseSat, baseLightness),
-    varyColor((baseHue + randomInRange(30, 40)) % 360, baseSat, baseLightness),
-    varyColor((baseHue - randomInRange(15, 25) + 360) % 360, baseSat, baseLightness),
-    varyColor((baseHue - randomInRange(30, 40) + 360) % 360, baseSat, baseLightness),
+    varyColor((baseHue + randomInRange(20, 40)) % 360, baseSat, baseLightness),
+    varyColor((baseHue + randomInRange(20, 40)) % 360, baseSat, baseLightness),
+    varyColor((baseHue - randomInRange(20, 40) + 360) % 360, baseSat, baseLightness),
+    varyColor((baseHue - randomInRange(20, 40) + 360) % 360, baseSat, baseLightness),
   ];
   
   return colors;
@@ -169,15 +176,15 @@ function generateTetradicPalette(baseHue: number): string[] {
 }
 
 function generateNeutralPalette(baseHue: number): string[] {
-  // Earthy, muted palette
-  const baseSat = randomInRange(10, 30);
+  // Earthy, muted palette - keep saturation constrained to ≤30%
+  const baseSat = randomInRange(10, 20);
   const baseLightness = randomInRange(40, 70);
   
   const colors = [
-    varyColor(baseHue, baseSat, baseLightness + 20),
-    varyColor(baseHue, baseSat, baseLightness),
-    varyColor(baseHue + randomInRange(-20, 20), baseSat + 5, baseLightness - 10),
-    varyColor(baseHue + randomInRange(-30, 30), baseSat - 5, baseLightness - 20),
+    varyColor(baseHue, baseSat, baseLightness + 20, 0, 30),
+    varyColor(baseHue, baseSat, baseLightness, 0, 30),
+    varyColor(baseHue + randomInRange(-20, 20), baseSat + 5, baseLightness - 10, 0, 30),
+    varyColor(baseHue + randomInRange(-30, 30), baseSat - 5, baseLightness - 20, 0, 30),
     generateNeutral(),
   ];
   
@@ -185,16 +192,16 @@ function generateNeutralPalette(baseHue: number): string[] {
 }
 
 function generateBrightPopPalette(baseHue: number): string[] {
-  // Gen Z energy - high saturation, varied hues
-  const baseSat = randomInRange(75, 95);
+  // Gen Z energy - high saturation (keep ≥75%), varied hues
+  const baseSat = randomInRange(80, 95);
   const baseLightness = randomInRange(50, 70);
   
   const colors = [
-    varyColor(baseHue, baseSat, baseLightness),
-    varyColor((baseHue + randomInRange(60, 100)) % 360, baseSat, baseLightness),
-    varyColor((baseHue + randomInRange(150, 210)) % 360, baseSat, baseLightness),
-    varyColor((baseHue + randomInRange(240, 300)) % 360, baseSat, baseLightness),
-    varyColor((baseHue + randomInRange(30, 50)) % 360, baseSat - 10, baseLightness + 10),
+    varyColor(baseHue, baseSat, baseLightness, 75, 100),
+    varyColor((baseHue + randomInRange(60, 100)) % 360, baseSat, baseLightness, 75, 100),
+    varyColor((baseHue + randomInRange(150, 210)) % 360, baseSat, baseLightness, 75, 100),
+    varyColor((baseHue + randomInRange(240, 300)) % 360, baseSat, baseLightness, 75, 100),
+    varyColor((baseHue + randomInRange(30, 50)) % 360, baseSat - 10, baseLightness + 10, 75, 100),
   ];
   
   return colors;
@@ -228,8 +235,8 @@ function generatePaletteByHarmony(harmony: HarmonyType): GeneratedPalette {
       break;
   }
   
-  // Every 2nd palette: replace 1 color with a neutral
-  if (Math.random() < 0.5) {
+  // For non-bright-pop and non-neutral palettes: 30% chance to replace 1 color with a neutral
+  if (harmony !== 'bright-pop' && harmony !== 'neutral' && Math.random() < 0.3) {
     const replaceIndex = Math.floor(Math.random() * 5);
     colors[replaceIndex] = generateNeutral();
   }
