@@ -44,7 +44,7 @@ export default function PaletteToolbar({
       </Button>
       
       {/* Secondary Actions */}
-      <div className="flex items-center justify-center gap-3 flex-wrap">
+      <div className="flex items-center justify-center gap-6 flex-wrap">
         <Button 
           variant="outline" 
           onClick={onAddColor}
