@@ -10,6 +10,8 @@ import PaletteLibrary from '@/components/PaletteLibrary';
 import EducationSection from '@/components/EducationSection';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
+import ImageColorExtractor from '@/components/ImageColorExtractor';
+import BaseColorGenerator from '@/components/BaseColorGenerator';
 import { useToast } from '@/hooks/use-toast';
 import { PRESET_PALETTES } from '@/lib/palettes';
 
@@ -271,6 +273,26 @@ export default function Home() {
     });
   };
 
+  const handleColorsExtracted = (colors: string[]) => {
+    const newPalette = colors.map((color) => ({ color, isLocked: false }));
+    updatePalette(newPalette);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    toast({
+      title: "Colors Extracted!",
+      description: "Dominant colors from your image loaded into generator.",
+    });
+  };
+
+  const handlePaletteGenerated = (colors: string[]) => {
+    const newPalette = colors.map((color) => ({ color, isLocked: false }));
+    updatePalette(newPalette);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    toast({
+      title: "Palette Generated!",
+      description: "Harmonious color palette created from your base color.",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <AdPlaceholder />
@@ -313,6 +335,22 @@ export default function Home() {
             onSave={handleSavePalette}
             onViewLibrary={handleViewLibrary}
           />
+        </div>
+      </section>
+
+      <section className="py-12 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-2">Advanced Generation</h2>
+            <p className="text-muted-foreground">
+              Extract colors from images or generate harmonious palettes from a base color
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            <ImageColorExtractor onColorsExtracted={handleColorsExtracted} />
+            <BaseColorGenerator onPaletteGenerated={handlePaletteGenerated} />
+          </div>
         </div>
       </section>
 
