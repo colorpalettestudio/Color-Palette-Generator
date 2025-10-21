@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react';
 import tinycolor from 'tinycolor2';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import ColorCard from '@/components/ColorCard';
 import PaletteToolbar from '@/components/PaletteToolbar';
@@ -242,7 +241,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <AdPlaceholder />
       
       <Hero
         onShuffle={handleShuffle}
@@ -250,8 +249,6 @@ export default function Home() {
         onClear={handleClear}
         canAddMore={palette.length < MAX_COLORS}
       />
-
-      <AdPlaceholder />
 
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4">

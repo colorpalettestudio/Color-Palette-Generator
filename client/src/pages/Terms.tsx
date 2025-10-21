@@ -1,12 +1,9 @@
 import { Link } from 'wouter';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export default function Terms() {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      
       <div className="max-w-4xl mx-auto px-4 py-16">
         <Link href="/" className="text-primary hover:underline mb-6 inline-block">
           ← Back to Generator
