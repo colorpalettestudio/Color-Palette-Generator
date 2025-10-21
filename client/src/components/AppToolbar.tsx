@@ -25,7 +25,7 @@ interface AppToolbarProps {
   onExportSVG: () => void;
   onExportAdobeSwatches: () => void;
   onExportStudioCode: () => void;
-  onColorsExtracted: (colors: string[], colorPool?: string[]) => void;
+  onColorsExtracted: (colors: string[], colorPool?: string[], imageUrl?: string) => void;
   onShuffle: () => void;
   canAddMore: boolean;
 }
@@ -44,8 +44,8 @@ export default function AppToolbar({
 }: AppToolbarProps) {
   const [imageDialogOpen, setImageDialogOpen] = useState(false);
 
-  const handleColorsExtracted = (colors: string[], colorPool?: string[]) => {
-    onColorsExtracted(colors, colorPool);
+  const handleColorsExtracted = (colors: string[], colorPool?: string[], imageUrl?: string) => {
+    onColorsExtracted(colors, colorPool, imageUrl);
     setImageDialogOpen(false);
   };
 
