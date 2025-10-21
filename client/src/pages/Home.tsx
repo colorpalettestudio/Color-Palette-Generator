@@ -16,7 +16,7 @@ import { useToast } from '@/hooks/use-toast';
 import { PRESET_PALETTES } from '@/lib/palettes';
 
 const MIN_COLORS = 3;
-const MAX_COLORS = 8;
+const MAX_COLORS = 10;
 
 interface ColorState {
   color: string;
