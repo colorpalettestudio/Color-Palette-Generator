@@ -111,10 +111,6 @@ export default function Home() {
     }
   };
 
-  const handleClear = () => {
-    const newPalette = generateInitialPalette(5);
-    updatePalette(newPalette);
-  };
 
   const handleToggleLock = (index: number) => {
     const newPalette = palette.map((item, i) =>
@@ -388,7 +384,6 @@ export default function Home() {
       
       <Hero
         onShuffle={handleShuffle}
-        onClear={handleClear}
       />
 
       <section className="pt-4 pb-12">

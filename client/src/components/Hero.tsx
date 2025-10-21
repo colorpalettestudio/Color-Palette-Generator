@@ -3,10 +3,9 @@ import { Shuffle } from 'lucide-react';
 
 interface HeroProps {
   onShuffle: () => void;
-  onClear: () => void;
 }
 
-export default function Hero({ onShuffle, onClear }: HeroProps) {
+export default function Hero({ onShuffle }: HeroProps) {
   return (
     <section className="pt-16 pb-8 text-center">
       <div className="max-w-4xl mx-auto px-4">
@@ -22,26 +21,15 @@ export default function Hero({ onShuffle, onClear }: HeroProps) {
           Shuffle random palettes, lock your favorites, and explore ready-made palettes.
         </p>
         
-        <div className="flex flex-col items-center gap-4">
-          {/* Primary CTA */}
-          <Button 
-            size="lg"
-            className="text-lg px-8 py-6 h-auto"
-            onClick={onShuffle}
-            data-testid="button-shuffle"
-          >
-            <Shuffle className="w-5 h-5 mr-2" />
-            Shuffle Palette
-          </Button>
-          
-          <button 
-            onClick={onClear}
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors underline"
-            data-testid="button-clear"
-          >
-            Clear All
-          </button>
-        </div>
+        <Button 
+          size="lg"
+          className="text-lg px-8 py-6 h-auto"
+          onClick={onShuffle}
+          data-testid="button-shuffle"
+        >
+          <Shuffle className="w-5 h-5 mr-2" />
+          Shuffle Palette
+        </Button>
       </div>
     </section>
   );
