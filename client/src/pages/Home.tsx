@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import tinycolor from 'tinycolor2';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -57,6 +57,7 @@ const generateInitialPalette = (count: number): ColorState[] => {
 
 export default function Home() {
   const [palette, setPalette] = useState<ColorState[]>(generateInitialPalette(5));
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const paletteRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -67,6 +68,18 @@ export default function Home() {
       )
     );
   };
+
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.code === 'Space' && e.target === document.body) {
+        e.preventDefault();
+        handleShuffle();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+    return () => document.removeEventListener('keydown', handleKeyPress);
+  }, []);
 
   const handleAddColor = () => {
     if (palette.length < MAX_COLORS) {
@@ -102,6 +115,27 @@ export default function Home() {
     } catch (err) {
       console.error('Failed to copy:', err);
     }
+  };
+
+  const handleDragStart = (index: number) => {
+    setDraggedIndex(index);
+  };
+
+  const handleDragOver = (e: React.DragEvent, index: number) => {
+    e.preventDefault();
+    if (draggedIndex === null || draggedIndex === index) return;
+
+    const newPalette = [...palette];
+    const draggedItem = newPalette[draggedIndex];
+    newPalette.splice(draggedIndex, 1);
+    newPalette.splice(index, 0, draggedItem);
+
+    setPalette(newPalette);
+    setDraggedIndex(index);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
   };
 
   const handleExportPNG = async () => {
@@ -235,6 +269,10 @@ export default function Home() {
                 onRemove={() => handleRemoveColor(index)}
                 canRemove={palette.length > MIN_COLORS}
                 onCopy={handleCopyColor}
+                onDragStart={() => handleDragStart(index)}
+                onDragOver={(e) => handleDragOver(e, index)}
+                onDragEnd={handleDragEnd}
+                isDragging={draggedIndex === index}
               />
             ))}
           </div>
