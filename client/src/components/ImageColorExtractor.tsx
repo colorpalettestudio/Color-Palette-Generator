@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useToast } from '@/hooks/use-toast';
 
 interface ImageColorExtractorProps {
-  onColorsExtracted: (colors: string[]) => void;
+  onColorsExtracted: (colors: string[], colorPool?: string[]) => void;
 }
 
 export default function ImageColorExtractor({ onColorsExtracted }: ImageColorExtractorProps) {
@@ -99,10 +99,11 @@ export default function ImageColorExtractor({ onColorsExtracted }: ImageColorExt
     reader.onload = (e) => {
       const img = new Image();
       img.onload = () => {
-        const colors = extractColorsFromImage(img, 5);
+        const paletteColors = extractColorsFromImage(img, 5);
+        const colorPool = extractColorsFromImage(img, 25); // Extract more colors for shuffling
         
         // Ensure we have at least 3 colors (minimum palette size)
-        if (colors.length < 3) {
+        if (paletteColors.length < 3) {
           setIsProcessing(false);
           toast({
             title: "Not Enough Colors",
@@ -112,7 +113,7 @@ export default function ImageColorExtractor({ onColorsExtracted }: ImageColorExt
           return;
         }
         
-        onColorsExtracted(colors);
+        onColorsExtracted(paletteColors, colorPool);
         setPreviewUrl(e.target?.result as string);
         setIsProcessing(false);
       };

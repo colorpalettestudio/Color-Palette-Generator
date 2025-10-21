@@ -39,6 +39,7 @@ export default function Home() {
   const [history, setHistory] = useState<ColorState[][]>([generateInitialPalette(5)]);
   const [historyIndex, setHistoryIndex] = useState(0);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [imageColorPool, setImageColorPool] = useState<string[]>([]);
   const paletteRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -63,9 +64,18 @@ export default function Home() {
   };
 
   const handleShuffle = () => {
-    const newPalette = palette.map((item) =>
-      item.isLocked ? item : { ...item, color: generateRandomColor() }
-    );
+    const newPalette = palette.map((item) => {
+      if (item.isLocked) return item;
+      
+      // If we have image colors, pick randomly from them
+      if (imageColorPool.length > 0) {
+        const randomImageColor = imageColorPool[Math.floor(Math.random() * imageColorPool.length)];
+        return { ...item, color: randomImageColor };
+      }
+      
+      // Otherwise, generate random color
+      return { ...item, color: generateRandomColor() };
+    });
     updatePalette(newPalette);
   };
 
@@ -395,22 +405,36 @@ export default function Home() {
   const handleSelectPalette = (colors: string[]) => {
     const newPalette = colors.map((color) => ({ color, isLocked: false }));
     updatePalette(newPalette);
+    
+    // Clear image color pool when loading a preset palette
+    setImageColorPool([]);
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleColorsExtracted = (colors: string[]) => {
+  const handleColorsExtracted = (colors: string[], colorPool?: string[]) => {
     const newPalette = colors.map((color) => ({ color, isLocked: false }));
     updatePalette(newPalette);
+    
+    // Store the color pool for shuffling
+    if (colorPool && colorPool.length > 0) {
+      setImageColorPool(colorPool);
+    }
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
     toast({
       title: "Colors Extracted!",
-      description: "Dominant colors from your image loaded into generator.",
+      description: "Dominant colors from your image loaded. Shuffle to explore more colors from this image.",
     });
   };
 
   const handlePaletteGenerated = (colors: string[]) => {
     const newPalette = colors.map((color) => ({ color, isLocked: false }));
     updatePalette(newPalette);
+    
+    // Clear image color pool when using base color generation
+    setImageColorPool([]);
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
     toast({
       title: "Palette Generated!",
