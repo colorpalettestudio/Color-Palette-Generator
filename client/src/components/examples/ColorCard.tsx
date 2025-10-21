@@ -10,6 +10,7 @@ export default function ColorCardExample() {
         onRemove={() => console.log('Remove color')}
         canRemove={true}
         onCopy={(color) => console.log('Copy', color)}
+        onColorChange={(color) => console.log('Color changed to', color)}
         onDragStart={() => console.log('Drag start')}
         onDragOver={(e) => console.log('Drag over')}
         onDragEnd={() => console.log('Drag end')}

@@ -99,6 +99,12 @@ export default function Home() {
     }
   };
 
+  const handleColorChange = (index: number, newColor: string) => {
+    setPalette((prev) =>
+      prev.map((item, i) => (i === index ? { ...item, color: newColor } : item))
+    );
+  };
+
   const handleCopyColor = async (color: string) => {
     try {
       await navigator.clipboard.writeText(color);
@@ -261,6 +267,7 @@ export default function Home() {
                 onRemove={() => handleRemoveColor(index)}
                 canRemove={palette.length > MIN_COLORS}
                 onCopy={handleCopyColor}
+                onColorChange={(newColor) => handleColorChange(index, newColor)}
                 onDragStart={() => handleDragStart(index)}
                 onDragOver={(e) => handleDragOver(e, index)}
                 onDragEnd={handleDragEnd}

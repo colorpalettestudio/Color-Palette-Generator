@@ -1,6 +1,6 @@
-import { Lock, LockOpen, X, GripVertical } from 'lucide-react';
+import { Lock, LockOpen, X, GripVertical, Pipette } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 interface ColorCardProps {
   color: string;
@@ -9,6 +9,7 @@ interface ColorCardProps {
   onRemove: () => void;
   canRemove: boolean;
   onCopy: (color: string) => void;
+  onColorChange: (color: string) => void;
   onDragStart?: () => void;
   onDragOver?: (e: React.DragEvent) => void;
   onDragEnd?: () => void;
@@ -22,17 +23,27 @@ export default function ColorCard({
   onRemove, 
   canRemove,
   onCopy,
+  onColorChange,
   onDragStart,
   onDragOver,
   onDragEnd,
   isDragging = false,
 }: ColorCardProps) {
   const [copied, setCopied] = useState(false);
+  const colorInputRef = useRef<HTMLInputElement>(null);
 
   const handleCopy = () => {
     onCopy(color);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleColorClick = () => {
+    colorInputRef.current?.click();
+  };
+
+  const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onColorChange(e.target.value);
   };
 
   return (
@@ -44,11 +55,15 @@ export default function ColorCard({
       onDragEnd={onDragEnd}
     >
       <div 
-        className="flex-1 relative group cursor-move"
+        className="flex-1 relative group cursor-pointer"
         style={{ backgroundColor: color }}
+        onClick={handleColorClick}
         data-testid={`color-card-${color}`}
       >
-        <div className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div 
+          className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="w-8 h-8 rounded-full bg-black/20 hover:bg-black/40 flex items-center justify-center text-white cursor-grab active:cursor-grabbing">
             <GripVertical className="w-4 h-4" />
           </div>
@@ -67,14 +82,21 @@ export default function ColorCard({
           </button>
         )}
         
-        <div 
-          onClick={handleCopy}
-          className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity cursor-pointer bg-black/10"
-        >
-          <span className="text-white font-medium text-sm px-4 py-2 bg-black/40 rounded-lg backdrop-blur-sm">
-            Click to copy
-          </span>
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+          <div className="flex items-center gap-2 text-white font-medium text-sm px-4 py-2 bg-black/40 rounded-lg backdrop-blur-sm">
+            <Pipette className="w-4 h-4" />
+            <span>Pick color</span>
+          </div>
         </div>
+
+        <input
+          ref={colorInputRef}
+          type="color"
+          value={color}
+          onChange={handleColorChange}
+          className="absolute opacity-0 pointer-events-none"
+          data-testid={`input-color-${color}`}
+        />
       </div>
       
       <div className="bg-background p-4 flex items-center justify-between border-t">
