@@ -78,7 +78,7 @@ export default function AppToolbar({
               data-testid="toolbar-image-upload"
             >
               <ImageIcon className="w-6 h-6" />
-              <span className="text-[10px] font-medium text-center leading-tight">Generate<br/>from Image</span>
+              <span className="text-xs font-medium text-center leading-tight">Upload<br/>Image</span>
             </button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
