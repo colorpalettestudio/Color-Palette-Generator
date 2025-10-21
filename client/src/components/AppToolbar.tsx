@@ -48,17 +48,22 @@ export default function AppToolbar({
   };
 
   return (
-    <div className="bg-black text-white border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-4 py-4">
-        <div className="flex items-center justify-between gap-4 flex-wrap">
-          <div className="flex items-center gap-3">
+    <section className="py-6 bg-muted/30">
+      <div className="max-w-5xl mx-auto px-4">
+        <div className="bg-card border border-card-border rounded-xl p-6">
+          <div className="text-center mb-4">
+            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+              Palette Tools
+            </h3>
+          </div>
+          
+          <div className="flex items-center justify-center gap-3 flex-wrap">
             <Button
-              variant="ghost"
-              size="sm"
+              variant="outline"
+              size="default"
               onClick={onAddColor}
               disabled={!canAddMore}
               data-testid="toolbar-add-color"
-              className="text-white hover:bg-white/10"
             >
               <Plus className="w-4 h-4 mr-2" />
               Add Color
@@ -67,10 +72,9 @@ export default function AppToolbar({
             <Dialog open={imageDialogOpen} onOpenChange={setImageDialogOpen}>
               <DialogTrigger asChild>
                 <Button 
-                  variant="ghost" 
-                  size="sm" 
+                  variant="outline" 
+                  size="default" 
                   data-testid="toolbar-image-upload"
-                  className="text-white hover:bg-white/10"
                 >
                   <ImageIcon className="w-4 h-4 mr-2" />
                   Generate from Image
@@ -89,15 +93,12 @@ export default function AppToolbar({
                 <ImageColorExtractor onColorsExtracted={handleColorsExtracted} />
               </DialogContent>
             </Dialog>
-          </div>
 
-          <div className="flex items-center gap-3">
             <Button
-              variant="ghost"
-              size="sm"
+              variant="outline"
+              size="default"
               onClick={onViewLibrary}
               data-testid="toolbar-view-library"
-              className="text-white hover:bg-white/10"
             >
               <Library className="w-4 h-4 mr-2" />
               View Library
@@ -106,10 +107,9 @@ export default function AppToolbar({
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button 
-                  variant="ghost" 
-                  size="sm" 
+                  variant="outline" 
+                  size="default" 
                   data-testid="toolbar-export-menu"
-                  className="text-white hover:bg-white/10"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   Export
@@ -141,6 +141,6 @@ export default function AppToolbar({
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
