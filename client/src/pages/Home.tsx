@@ -430,9 +430,7 @@ export default function Home() {
 
 
   return (
-    <div className="min-h-screen bg-background">
-      <AdPlaceholder />
-      
+    <>
       <AppToolbar
         onAddColor={handleAddColor}
         onViewLibrary={handleViewLibrary}
@@ -445,7 +443,10 @@ export default function Home() {
         canAddMore={palette.length < MAX_COLORS}
       />
       
-      <Hero />
+      <div className="min-h-screen bg-background ml-24">
+        <AdPlaceholder />
+        
+        <Hero />
 
       <section className="pt-4 pb-12">
         <div className="max-w-7xl mx-auto px-4">
@@ -503,6 +504,7 @@ export default function Home() {
       <AdPlaceholder />
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }
