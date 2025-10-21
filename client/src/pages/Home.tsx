@@ -390,6 +390,7 @@ export default function Home() {
         onShuffle={handleShuffle}
         onAddColor={handleAddColor}
         onClear={handleClear}
+        onViewLibrary={handleViewLibrary}
         canAddMore={palette.length < MAX_COLORS}
       />
 
@@ -424,7 +425,6 @@ export default function Home() {
             onExportSVG={handleExportSVG}
             onExportAdobeSwatches={handleExportAdobeSwatches}
             onExportStudioCode={handleExportStudioCode}
-            onViewLibrary={handleViewLibrary}
           />
         </div>
       </section>

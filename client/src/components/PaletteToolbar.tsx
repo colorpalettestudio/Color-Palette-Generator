@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Download, FileImage, Library, FileCode } from 'lucide-react';
+import { Download, FileImage, FileCode } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +13,6 @@ interface PaletteToolbarProps {
   onExportSVG: () => void;
   onExportAdobeSwatches: () => void;
   onExportStudioCode: () => void;
-  onViewLibrary: () => void;
 }
 
 export default function PaletteToolbar({ 
@@ -21,8 +20,7 @@ export default function PaletteToolbar({
   onExportPDF,
   onExportSVG,
   onExportAdobeSwatches,
-  onExportStudioCode,
-  onViewLibrary 
+  onExportStudioCode
 }: PaletteToolbarProps) {
   return (
     <div className="flex items-center justify-center gap-3 flex-wrap">
@@ -56,15 +54,6 @@ export default function PaletteToolbar({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      
-      <Button 
-        variant="outline" 
-        onClick={onViewLibrary}
-        data-testid="button-view-library"
-      >
-        <Library className="w-4 h-4 mr-2" />
-        View Library
-      </Button>
     </div>
   );
 }

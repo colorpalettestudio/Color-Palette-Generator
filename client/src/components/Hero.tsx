@@ -1,14 +1,15 @@
 import { Button } from '@/components/ui/button';
-import { Shuffle, Plus } from 'lucide-react';
+import { Shuffle, Plus, Library } from 'lucide-react';
 
 interface HeroProps {
   onShuffle: () => void;
   onAddColor: () => void;
   onClear: () => void;
+  onViewLibrary: () => void;
   canAddMore: boolean;
 }
 
-export default function Hero({ onShuffle, onAddColor, onClear, canAddMore }: HeroProps) {
+export default function Hero({ onShuffle, onAddColor, onClear, onViewLibrary, canAddMore }: HeroProps) {
   return (
     <section className="py-16 text-center">
       <div className="max-w-4xl mx-auto px-4">
@@ -24,28 +25,44 @@ export default function Hero({ onShuffle, onAddColor, onClear, canAddMore }: Her
           Shuffle random palettes, lock your favorites, and explore ready-made palettes.
         </p>
         
-        <div className="flex items-center justify-center gap-4 flex-wrap">
+        <div className="flex flex-col items-center gap-4">
+          {/* Primary CTA */}
           <Button 
-            size="lg" 
+            size="lg"
+            className="text-lg px-8 py-6 h-auto"
             onClick={onShuffle}
             data-testid="button-shuffle"
           >
-            <Shuffle className="w-4 h-4 mr-2" />
+            <Shuffle className="w-5 h-5 mr-2" />
             Shuffle Palette
           </Button>
-          <Button 
-            variant="outline" 
-            size="lg" 
-            onClick={onAddColor}
-            disabled={!canAddMore}
-            data-testid="button-add-color"
-          >
-            <Plus className="w-4 h-4 mr-2" />
-            Add Color
-          </Button>
+          
+          {/* Secondary Actions */}
+          <div className="flex items-center gap-3 flex-wrap justify-center">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              onClick={onAddColor}
+              disabled={!canAddMore}
+              data-testid="button-add-color"
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Add Color
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              onClick={onViewLibrary}
+              data-testid="button-view-library-hero"
+            >
+              <Library className="w-4 h-4 mr-2" />
+              View Library
+            </Button>
+          </div>
+          
           <button 
             onClick={onClear}
-            className="text-muted-foreground hover:text-foreground transition-colors underline"
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors underline"
             data-testid="button-clear"
           >
             Clear All
