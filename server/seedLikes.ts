@@ -3,7 +3,7 @@ import { PRESET_PALETTES } from '../client/src/lib/palettes';
 
 const sql = neon(process.env.DATABASE_URL!);
 
-// Top 10 palettes should have the highest counts
+// Top 12 palettes should have the highest counts
 const TOP_PALETTES = [
   'Lavender Fields',
   'Coastal Dawn',
@@ -14,7 +14,9 @@ const TOP_PALETTES = [
   'Champagne Toast',
   'Blush & Bashful',
   'Underwater',
-  'Pastel Dream'
+  'Pastel Dream',
+  'Coral Reef',
+  'Raspberry Sorbet'
 ];
 
 function getRandomInt(min: number, max: number): number {
