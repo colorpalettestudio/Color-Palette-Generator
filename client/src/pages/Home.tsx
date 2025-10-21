@@ -231,29 +231,122 @@ export default function Home() {
     }
   };
 
-  const handleSavePalette = () => {
+  const handleExportSVG = () => {
     try {
-      const savedPalettes = JSON.parse(localStorage.getItem('savedPalettes') || '[]');
-      const newPalette = {
-        id: Date.now(),
-        colors: palette.map((p) => p.color),
-        timestamp: new Date().toISOString(),
-      };
-      savedPalettes.push(newPalette);
-      localStorage.setItem('savedPalettes', JSON.stringify(savedPalettes));
+      const colors = palette.map((p) => p.color);
+      const swatchWidth = 100;
+      const swatchHeight = 100;
+      const width = colors.length * swatchWidth;
+      const height = swatchHeight;
+
+      let svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">`;
+
+      colors.forEach((color, index) => {
+        svg += `
+  <rect x="${index * swatchWidth}" y="0" width="${swatchWidth}" height="${swatchHeight}" fill="${color}"/>
+  <text x="${index * swatchWidth + swatchWidth / 2}" y="${swatchHeight / 2 + 5}" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="${getContrastColor(color)}">${color.toUpperCase()}</text>`;
+      });
+
+      svg += '\n</svg>';
+
+      const blob = new Blob([svg], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.download = 'color-palette.svg';
+      link.href = url;
+      link.click();
+      URL.revokeObjectURL(url);
 
       toast({
-        title: "Saved!",
-        description: "Palette saved to browser storage.",
+        title: "Success!",
+        description: "Palette exported as SVG.",
       });
     } catch (err) {
-      console.error('Save failed:', err);
+      console.error('Export SVG failed:', err);
       toast({
         title: "Error",
-        description: "Failed to save palette.",
+        description: "Failed to export SVG.",
         variant: "destructive",
       });
     }
+  };
+
+  const handleExportAdobeSwatches = () => {
+    try {
+      const colors = palette.map((p) => p.color);
+      
+      // Create a simple ACO format (Adobe Color Swatch)
+      // This is a simplified version - creates a text file that can be used
+      const acoContent = colors.map((color, index) => {
+        const r = parseInt(color.slice(1, 3), 16);
+        const g = parseInt(color.slice(3, 5), 16);
+        const b = parseInt(color.slice(5, 7), 16);
+        return `Color ${index + 1}: RGB(${r}, ${g}, ${b}) ${color.toUpperCase()}`;
+      }).join('\n');
+
+      const blob = new Blob([acoContent], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.download = 'color-palette.aco.txt';
+      link.href = url;
+      link.click();
+      URL.revokeObjectURL(url);
+
+      toast({
+        title: "Success!",
+        description: "Adobe swatches exported.",
+      });
+    } catch (err) {
+      console.error('Export Adobe Swatches failed:', err);
+      toast({
+        title: "Error",
+        description: "Failed to export Adobe swatches.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleExportStudioCode = () => {
+    try {
+      const colors = palette.map((p) => p.color);
+      const colorNames = colors.map((hex) => ({
+        hex: hex,
+        name: ""
+      }));
+
+      const params = new URLSearchParams({
+        dataStyleName: '"style16"',
+        numColorNamePairs: colors.length.toString(),
+        colorNames: JSON.stringify(colorNames),
+        colorCombinationCheckboxes: JSON.stringify(new Array(16).fill(false)),
+        selectedCombinations: JSON.stringify([])
+      });
+
+      const studioCodeUrl = `studiocode?${params.toString()}`;
+
+      navigator.clipboard.writeText(studioCodeUrl);
+
+      toast({
+        title: "Copied!",
+        description: "Studio Code URL copied to clipboard.",
+      });
+    } catch (err) {
+      console.error('Export Studio Code failed:', err);
+      toast({
+        title: "Error",
+        description: "Failed to export Studio Code URL.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const getContrastColor = (hexColor: string): string => {
+    const r = parseInt(hexColor.slice(1, 3), 16);
+    const g = parseInt(hexColor.slice(3, 5), 16);
+    const b = parseInt(hexColor.slice(5, 7), 16);
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return luminance > 0.5 ? '#000000' : '#FFFFFF';
   };
 
   const handleViewLibrary = () => {
@@ -267,10 +360,6 @@ export default function Home() {
     const newPalette = colors.map((color) => ({ color, isLocked: false }));
     updatePalette(newPalette);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    toast({
-      title: "Palette Loaded!",
-      description: "Selected palette loaded into generator.",
-    });
   };
 
   const handleColorsExtracted = (colors: string[]) => {
@@ -332,7 +421,9 @@ export default function Home() {
           <PaletteToolbar
             onExportPNG={handleExportPNG}
             onExportPDF={handleExportPDF}
-            onSave={handleSavePalette}
+            onExportSVG={handleExportSVG}
+            onExportAdobeSwatches={handleExportAdobeSwatches}
+            onExportStudioCode={handleExportStudioCode}
             onViewLibrary={handleViewLibrary}
           />
         </div>
