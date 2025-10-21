@@ -382,9 +382,7 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <AdPlaceholder />
       
-      <Hero
-        onShuffle={handleShuffle}
-      />
+      <Hero />
 
       <section className="pt-4 pb-12">
         <div className="max-w-7xl mx-auto px-4">
@@ -412,6 +410,7 @@ export default function Home() {
           </div>
 
           <PaletteToolbar
+            onShuffle={handleShuffle}
             onAddColor={handleAddColor}
             onViewLibrary={handleViewLibrary}
             onExportPNG={handleExportPNG}
