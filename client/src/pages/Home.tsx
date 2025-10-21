@@ -462,43 +462,15 @@ export default function Home() {
       <div className="min-h-screen bg-background mr-24">
         <AdPlaceholder />
         
-        <Hero />
+        <Hero sourceImage={sourceImage} onClearSourceImage={handleClearSourceImage} />
 
       <section className="pt-4 pb-12">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="relative">
-            {sourceImage && (
-              <div className="absolute -top-2 right-0 z-10 max-w-xs">
-                <div className="bg-card border border-card-border rounded-lg p-3 shadow-lg">
-                  <div className="flex items-center justify-between mb-2">
-                    <p className="text-xs font-medium text-muted-foreground">
-                      From your image
-                    </p>
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      onClick={handleClearSourceImage}
-                      className="h-6 px-2 text-xs"
-                      data-testid="button-clear-source-image"
-                    >
-                      Clear
-                    </Button>
-                  </div>
-                  <img
-                    src={sourceImage}
-                    alt="Source for palette generation"
-                    className="w-full h-auto rounded-md max-h-32 object-cover"
-                    data-testid="img-source"
-                  />
-                </div>
-              </div>
-            )}
-            
-            <div 
-              ref={paletteRef}
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8"
-              data-testid="palette-grid"
-            >
+          <div 
+            ref={paletteRef}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8"
+            data-testid="palette-grid"
+          >
             {palette.map((item, index) => (
               <ColorCard
                 key={index}
@@ -515,7 +487,6 @@ export default function Home() {
                 isDragging={draggedIndex === index}
               />
             ))}
-            </div>
           </div>
 
           <div className="flex justify-center">
