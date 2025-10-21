@@ -26,7 +26,7 @@ export default function PaletteLibraryCard({ name, colors, onClick }: PaletteLib
           >
             {isHovered && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-xs font-mono font-medium px-1.5 py-0.5 rounded bg-black/70 text-white">
+                <span className="text-[10px] font-mono font-medium px-1 py-0.5 rounded bg-white/95 text-black shadow-sm">
                   {color.toUpperCase()}
                 </span>
               </div>
