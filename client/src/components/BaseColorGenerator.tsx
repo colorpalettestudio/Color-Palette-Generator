@@ -166,6 +166,9 @@ export default function BaseColorGenerator({ onPaletteGenerated }: BaseColorGene
             {harmonyMode === 'split-complementary' && 'Base color plus two adjacent to its complement'}
             {harmonyMode === 'monochromatic' && 'Variations of a single hue'}
           </p>
+          <p className="text-xs text-muted-foreground italic">
+            Try analogous, complementary, or triadic for different moods
+          </p>
         </div>
 
         <Button

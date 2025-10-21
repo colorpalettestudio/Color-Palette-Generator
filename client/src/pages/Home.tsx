@@ -175,6 +175,26 @@ export default function Home() {
         scale: 2,
       });
 
+      // Add watermark with background for visibility
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        const text = 'Generated with Color Palette Studio';
+        ctx.font = '12px Arial';
+        const textWidth = ctx.measureText(text).width;
+        const padding = 6;
+        const x = canvas.width - textWidth - padding * 2;
+        const y = canvas.height - 20;
+        
+        // Semi-transparent background
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fillRect(x - padding, y - 2, textWidth + padding * 2, 16);
+        
+        // Text
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        ctx.textAlign = 'left';
+        ctx.fillText(text, x, y + 10);
+      }
+
       const link = document.createElement('a');
       link.download = 'color-palette.png';
       link.href = canvas.toDataURL('image/png');
@@ -202,6 +222,26 @@ export default function Home() {
         backgroundColor: '#ffffff',
         scale: 2,
       });
+
+      // Add watermark with background for visibility
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        const text = 'Generated with Color Palette Studio';
+        ctx.font = '12px Arial';
+        const textWidth = ctx.measureText(text).width;
+        const padding = 6;
+        const x = canvas.width - textWidth - padding * 2;
+        const y = canvas.height - 20;
+        
+        // Semi-transparent background
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fillRect(x - padding, y - 2, textWidth + padding * 2, 16);
+        
+        // Text
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        ctx.textAlign = 'left';
+        ctx.fillText(text, x, y + 10);
+      }
 
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({

@@ -197,7 +197,7 @@ export default function ImageColorExtractor({ onColorsExtracted }: ImageColorExt
               <img
                 src={previewUrl}
                 alt="Uploaded preview"
-                className="max-h-32 mx-auto rounded-md"
+                className="max-h-32 mx-auto rounded-md transition-shadow hover:shadow-lg"
                 data-testid="img-preview"
               />
               <div className="flex gap-2 justify-center">

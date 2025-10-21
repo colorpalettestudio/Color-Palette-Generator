@@ -1,3 +1,5 @@
+import { Shuffle, Lock, Download } from 'lucide-react';
+
 export default function EducationSection() {
   return (
     <section className="py-16">
@@ -12,10 +14,39 @@ export default function EducationSection() {
           
           <div>
             <h2 className="text-2xl font-bold mb-4">How to Use It</h2>
-            <div className="space-y-3 text-muted-foreground">
-              <p><strong className="text-foreground">Step 1:</strong> Click "Shuffle" to generate random palettes.</p>
-              <p><strong className="text-foreground">Step 2:</strong> Lock colors you love by clicking the lock icon.</p>
-              <p><strong className="text-foreground">Step 3:</strong> Export or save your final palette for use in your projects.</p>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                  <Shuffle className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-muted-foreground">
+                    <strong className="text-foreground">Step 1:</strong> Click "Shuffle" to generate random palettes.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                  <Lock className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-muted-foreground">
+                    <strong className="text-foreground">Step 2:</strong> Lock colors you love by clicking the lock icon.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                  <Download className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-muted-foreground">
+                    <strong className="text-foreground">Step 3:</strong> Export or save your final palette for use in your projects.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
           
