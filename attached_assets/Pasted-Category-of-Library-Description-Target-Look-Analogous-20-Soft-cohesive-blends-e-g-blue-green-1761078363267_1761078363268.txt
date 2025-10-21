@@ -1,0 +1,66 @@
+Category	% of Library	Description / Target Look
+Analogous	20%	Soft, cohesive blends (e.g. blue-green-teal)
+Complementary	20%	Contrast-driven (e.g. purple + yellow)
+Triadic	20%	Balanced variety (e.g. red + blue + yellow)
+Split-Complementary	10%	Two contrasts, one anchor
+Tetradic (4-color schemes)	10%	Complex, vibrant mixes
+Neutral-Focused / Earthy	10%	Muted browns, creams, grays
+Bright Pop / Modern Vibrant	10%	Gen Z energy — pinks, teals, limes
+
+That distribution ensures every “type” of designer can find something.
+
+⚙️ Step 3. Algorithmic Rules (for your dev)
+
+When generating each palette:
+
+Pick a base hue (random across 0–360° on HSL).
+
+Randomly choose a color harmony type (weighted by the distribution above).
+
+Generate remaining colors by applying hue shifts + saturation/lightness adjustments according to that harmony.
+
+Analogous: ±20–40° hue shift
+
+Complementary: +180° hue
+
+Split-Complementary: +150° and +210° hue
+
+Triadic: ±120° hue
+
+Tetradic: +90°, +180°, +270° hue
+
+Apply saturation/lightness variety:
+For each color, randomize saturation ±20% and lightness ±15%.
+→ ensures depth within palette (not all mid-tones).
+
+Inject neutral logic:
+Replace 1 color in every 2 palettes with a neutral variant (light gray, taupe, cream, dark charcoal).
+→ keeps palettes usable.
+
+🧠 Step 4. Style Tags (optional but smart)
+
+For UX and filtering later, tag each palette with simple mood categories:
+
+Warm, Cool, Neutral, Vibrant, Soft, Retro, Earthy, Pastel, Bold, Minimalist, Futuristic, Sunset, Natural…
+
+You can auto-assign tags based on hue/saturation values:
+
+If avg saturation > 70 → Vibrant
+
+If hue cluster < 90° → Warm
+
+If lightness range < 20 → Minimalist
+
+This makes browsing more “Pinterest-like.”
+
+🌈 Step 5. Manual Curation Pass (final polish)
+
+After generation, quickly curate the top 80% visually — delete ones that:
+
+Are overly dark or overly light
+
+Have 3+ similar tones
+
+Contain unreadable contrast combinations
+
+You’ll end up with about 80–85 top-tier palettes, and can manually fill the last 10–15 with human-made aesthetic palettes (like “Sunset Glow,” “Midnight Garden,” etc.) to anchor your brand aesthetic inside the mix.
