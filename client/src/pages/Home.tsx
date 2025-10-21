@@ -440,10 +440,11 @@ export default function Home() {
         onExportAdobeSwatches={handleExportAdobeSwatches}
         onExportStudioCode={handleExportStudioCode}
         onColorsExtracted={handleColorsExtracted}
+        onShuffle={handleShuffle}
         canAddMore={palette.length < MAX_COLORS}
       />
       
-      <div className="min-h-screen bg-background ml-24">
+      <div className="min-h-screen bg-background mr-24">
         <AdPlaceholder />
         
         <Hero />

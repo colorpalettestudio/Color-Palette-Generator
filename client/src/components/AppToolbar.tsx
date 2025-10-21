@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Plus, Library, Download, FileImage, FileCode, Image as ImageIcon } from 'lucide-react';
+import { Plus, Library, Download, FileImage, FileCode, Image as ImageIcon, Shuffle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -26,6 +26,7 @@ interface AppToolbarProps {
   onExportAdobeSwatches: () => void;
   onExportStudioCode: () => void;
   onColorsExtracted: (colors: string[], colorPool?: string[]) => void;
+  onShuffle: () => void;
   canAddMore: boolean;
 }
 
@@ -38,6 +39,7 @@ export default function AppToolbar({
   onExportAdobeSwatches,
   onExportStudioCode,
   onColorsExtracted,
+  onShuffle,
   canAddMore,
 }: AppToolbarProps) {
   const [imageDialogOpen, setImageDialogOpen] = useState(false);
@@ -49,7 +51,16 @@ export default function AppToolbar({
 
   return (
     <>
-      <aside className="fixed left-0 top-0 h-screen w-24 bg-muted/50 border-r border-border flex flex-col items-center py-8 gap-6 z-50">
+      <aside className="fixed right-0 top-0 h-screen w-24 bg-muted/50 border-l border-border flex flex-col items-center py-8 gap-6 z-50">
+        <button
+          onClick={onShuffle}
+          className="flex flex-col items-center gap-2 p-3 rounded-lg hover-elevate active-elevate-2 transition-all"
+          data-testid="toolbar-shuffle"
+        >
+          <Shuffle className="w-6 h-6" />
+          <span className="text-xs font-medium">Shuffle</span>
+        </button>
+
         <button
           onClick={onAddColor}
           disabled={!canAddMore}
@@ -67,7 +78,7 @@ export default function AppToolbar({
               data-testid="toolbar-image-upload"
             >
               <ImageIcon className="w-6 h-6" />
-              <span className="text-xs font-medium">Image</span>
+              <span className="text-[10px] font-medium text-center leading-tight">Generate<br/>from Image</span>
             </button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
@@ -103,7 +114,7 @@ export default function AppToolbar({
               <span className="text-xs font-medium">Export</span>
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" side="right">
+          <DropdownMenuContent align="end" side="left">
             <DropdownMenuItem onClick={onExportPNG} data-testid="menu-export-png">
               <FileImage className="w-4 h-4 mr-2" />
               Export as PNG
@@ -127,10 +138,6 @@ export default function AppToolbar({
           </DropdownMenuContent>
         </DropdownMenu>
       </aside>
-
-      <div className="ml-24">
-        {/* Spacer for sidebar */}
-      </div>
     </>
   );
 }
