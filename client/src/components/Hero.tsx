@@ -16,9 +16,9 @@ export default function Hero({ onShuffle, onAddColor, onClear, canAddMore }: Her
           Free, Fast & No Sign-Up
         </div>
         
-        <h2 className="text-5xl font-bold mb-4 leading-tight">
-          Build Your Perfect <span className="rainbow-text rainbow-text-animated">Color</span> Palette
-        </h2>
+        <h1 className="text-5xl font-bold mb-4 leading-tight">
+          <span className="rainbow-text rainbow-text-animated">Color</span> Palette Generator
+        </h1>
         
         <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
           Shuffle random palettes, lock your favorites, and explore ready-made palettes.
