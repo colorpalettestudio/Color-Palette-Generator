@@ -391,7 +391,7 @@ export default function Home() {
         onClear={handleClear}
       />
 
-      <section className="py-12">
+      <section className="pt-4 pb-12">
         <div className="max-w-7xl mx-auto px-4">
           <div 
             ref={paletteRef}

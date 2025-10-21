@@ -8,7 +8,7 @@ interface HeroProps {
 
 export default function Hero({ onShuffle, onClear }: HeroProps) {
   return (
-    <section className="py-16 text-center">
+    <section className="pt-16 pb-8 text-center">
       <div className="max-w-4xl mx-auto px-4">
         <div className="inline-block px-4 py-1.5 rounded-full bg-muted text-sm font-medium mb-6">
           Free, Fast & No Sign-Up
