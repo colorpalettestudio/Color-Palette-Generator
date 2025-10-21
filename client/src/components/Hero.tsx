@@ -1,16 +1,16 @@
 export default function Hero() {
   return (
-    <section className="pt-16 pb-8 text-center">
-      <div className="max-w-4xl mx-auto px-4">
+    <section className="pt-12 pb-8 text-center">
+      <div className="max-w-5xl mx-auto px-4">
         <div className="inline-block px-4 py-1.5 rounded-full bg-muted text-sm font-medium mb-6">
-          Free, Fast & No Sign-Up
+          Free, Instant & No Sign-Up Needed
         </div>
         
-        <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-4 leading-tight">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight">
           <span className="rainbow-text rainbow-text-animated">Color</span> Palette Generator
         </h1>
         
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
           Shuffle random palettes, lock your favorites, and explore ready-made palettes.
         </p>
       </div>
