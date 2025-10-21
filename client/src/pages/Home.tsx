@@ -40,6 +40,7 @@ export default function Home() {
   const [historyIndex, setHistoryIndex] = useState(0);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [imageColorPool, setImageColorPool] = useState<string[]>([]);
+  const [sourceImage, setSourceImage] = useState<string | null>(null);
   const paletteRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -412,7 +413,7 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleColorsExtracted = (colors: string[], colorPool?: string[]) => {
+  const handleColorsExtracted = (colors: string[], colorPool?: string[], imageUrl?: string) => {
     const newPalette = colors.map((color) => ({ color, isLocked: false }));
     updatePalette(newPalette);
     
@@ -421,10 +422,24 @@ export default function Home() {
       setImageColorPool(colorPool);
     }
     
+    // Store the source image
+    if (imageUrl) {
+      setSourceImage(imageUrl);
+    }
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
     toast({
       title: "Colors Extracted!",
       description: "Dominant colors from your image loaded. Shuffle to explore more colors from this image.",
+    });
+  };
+
+  const handleClearSourceImage = () => {
+    setSourceImage(null);
+    setImageColorPool([]);
+    toast({
+      title: "Image Cleared",
+      description: "Shuffling will now generate random colors.",
     });
   };
 
@@ -451,6 +466,32 @@ export default function Home() {
 
       <section className="pt-4 pb-12">
         <div className="max-w-7xl mx-auto px-4">
+          {sourceImage && (
+            <div className="mb-8 max-w-2xl mx-auto">
+              <div className="bg-card border border-card-border rounded-lg p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Generating palettes from your image
+                  </p>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={handleClearSourceImage}
+                    data-testid="button-clear-source-image"
+                  >
+                    Clear Image
+                  </Button>
+                </div>
+                <img
+                  src={sourceImage}
+                  alt="Source for palette generation"
+                  className="w-full h-auto rounded-md"
+                  data-testid="img-source"
+                />
+              </div>
+            </div>
+          )}
+          
           <div 
             ref={paletteRef}
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8"

@@ -1,12 +1,10 @@
 import { useState, useRef } from 'react';
 import { Upload, Image as ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-
 import { useToast } from '@/hooks/use-toast';
 
 interface ImageColorExtractorProps {
-  onColorsExtracted: (colors: string[], colorPool?: string[]) => void;
+  onColorsExtracted: (colors: string[], colorPool?: string[], imageUrl?: string) => void;
 }
 
 export default function ImageColorExtractor({ onColorsExtracted }: ImageColorExtractorProps) {
@@ -113,8 +111,9 @@ export default function ImageColorExtractor({ onColorsExtracted }: ImageColorExt
           return;
         }
         
-        onColorsExtracted(paletteColors, colorPool);
-        setPreviewUrl(e.target?.result as string);
+        const imageUrl = e.target?.result as string;
+        onColorsExtracted(paletteColors, colorPool, imageUrl);
+        setPreviewUrl(imageUrl);
         setIsProcessing(false);
       };
       img.onerror = () => {
@@ -164,83 +163,70 @@ export default function ImageColorExtractor({ onColorsExtracted }: ImageColorExt
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <ImageIcon className="w-5 h-5" />
-          Generate from Image
-        </CardTitle>
-        <CardDescription>
-          Upload an image to extract its dominant colors
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div
-          className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
-            isDragging ? 'border-primary bg-primary/5' : 'border-border'
-          }`}
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          data-testid="image-drop-zone"
-        >
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            onChange={handleFileSelect}
-            className="hidden"
-            data-testid="input-image-file"
-          />
+    <div
+      className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
+        isDragging ? 'border-primary bg-primary/5' : 'border-border'
+      }`}
+      onDrop={handleDrop}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      data-testid="image-drop-zone"
+    >
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleFileSelect}
+        className="hidden"
+        data-testid="input-image-file"
+      />
 
-          {previewUrl ? (
-            <div className="space-y-4">
-              <img
-                src={previewUrl}
-                alt="Uploaded preview"
-                className="max-h-32 mx-auto rounded-md transition-shadow hover:shadow-lg"
-                data-testid="img-preview"
-              />
-              <div className="flex gap-2 justify-center">
-                <Button
-                  size="sm"
-                  onClick={() => fileInputRef.current?.click()}
-                  disabled={isProcessing}
-                  data-testid="button-upload-another"
-                >
-                  Upload Another
-                </Button>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={handleClear}
-                  disabled={isProcessing}
-                  data-testid="button-clear-image"
-                >
-                  Clear
-                </Button>
-              </div>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              <div className="flex justify-center">
-                <Upload className="w-12 h-12 text-muted-foreground" />
-              </div>
-              <div className="space-y-2">
-                <p className="text-sm font-medium">Drop an image here</p>
-                <p className="text-xs text-muted-foreground">or</p>
-              </div>
-              <Button
-                onClick={() => fileInputRef.current?.click()}
-                disabled={isProcessing}
-                data-testid="button-browse-files"
-              >
-                {isProcessing ? 'Processing...' : 'Browse Files'}
-              </Button>
-            </div>
-          )}
+      {previewUrl ? (
+        <div className="space-y-4">
+          <img
+            src={previewUrl}
+            alt="Uploaded preview"
+            className="max-h-32 mx-auto rounded-md transition-shadow hover:shadow-lg"
+            data-testid="img-preview"
+          />
+          <div className="flex gap-2 justify-center">
+            <Button
+              size="sm"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={isProcessing}
+              data-testid="button-upload-another"
+            >
+              Upload Another
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={handleClear}
+              disabled={isProcessing}
+              data-testid="button-clear-image"
+            >
+              Clear
+            </Button>
+          </div>
         </div>
-      </CardContent>
-    </Card>
+      ) : (
+        <div className="space-y-4">
+          <div className="flex justify-center">
+            <Upload className="w-12 h-12 text-muted-foreground" />
+          </div>
+          <div className="space-y-2">
+            <p className="text-sm font-medium">Drop an image here</p>
+            <p className="text-xs text-muted-foreground">or</p>
+          </div>
+          <Button
+            onClick={() => fileInputRef.current?.click()}
+            disabled={isProcessing}
+            data-testid="button-browse-files"
+          >
+            {isProcessing ? 'Processing...' : 'Browse Files'}
+          </Button>
+        </div>
+      )}
+    </div>
   );
 }

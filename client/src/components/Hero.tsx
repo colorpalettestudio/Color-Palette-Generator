@@ -7,7 +7,7 @@ export default function Hero() {
         </div>
         
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight">
-          <span className="rainbow-text rainbow-text-animated">Color</span> Palette Generator
+          Color Palette <span className="rainbow-text rainbow-text-animated">Generator</span>
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
