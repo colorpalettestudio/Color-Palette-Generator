@@ -388,10 +388,7 @@ export default function Home() {
       
       <Hero
         onShuffle={handleShuffle}
-        onAddColor={handleAddColor}
         onClear={handleClear}
-        onViewLibrary={handleViewLibrary}
-        canAddMore={palette.length < MAX_COLORS}
       />
 
       <section className="py-12">
@@ -420,11 +417,14 @@ export default function Home() {
           </div>
 
           <PaletteToolbar
+            onAddColor={handleAddColor}
+            onViewLibrary={handleViewLibrary}
             onExportPNG={handleExportPNG}
             onExportPDF={handleExportPDF}
             onExportSVG={handleExportSVG}
             onExportAdobeSwatches={handleExportAdobeSwatches}
             onExportStudioCode={handleExportStudioCode}
+            canAddMore={palette.length < MAX_COLORS}
           />
         </div>
       </section>

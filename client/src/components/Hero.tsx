@@ -1,15 +1,12 @@
 import { Button } from '@/components/ui/button';
-import { Shuffle, Plus, Library } from 'lucide-react';
+import { Shuffle } from 'lucide-react';
 
 interface HeroProps {
   onShuffle: () => void;
-  onAddColor: () => void;
   onClear: () => void;
-  onViewLibrary: () => void;
-  canAddMore: boolean;
 }
 
-export default function Hero({ onShuffle, onAddColor, onClear, onViewLibrary, canAddMore }: HeroProps) {
+export default function Hero({ onShuffle, onClear }: HeroProps) {
   return (
     <section className="py-16 text-center">
       <div className="max-w-4xl mx-auto px-4">
@@ -36,29 +33,6 @@ export default function Hero({ onShuffle, onAddColor, onClear, onViewLibrary, ca
             <Shuffle className="w-5 h-5 mr-2" />
             Shuffle Palette
           </Button>
-          
-          {/* Secondary Actions */}
-          <div className="flex items-center gap-3 flex-wrap justify-center">
-            <Button 
-              variant="outline" 
-              size="lg" 
-              onClick={onAddColor}
-              disabled={!canAddMore}
-              data-testid="button-add-color"
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Add Color
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              onClick={onViewLibrary}
-              data-testid="button-view-library-hero"
-            >
-              <Library className="w-4 h-4 mr-2" />
-              View Library
-            </Button>
-          </div>
           
           <button 
             onClick={onClear}

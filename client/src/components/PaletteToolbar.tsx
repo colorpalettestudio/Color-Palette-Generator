@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Download, FileImage, FileCode } from 'lucide-react';
+import { Download, FileImage, FileCode, Plus, Library } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,22 +8,47 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 interface PaletteToolbarProps {
+  onAddColor: () => void;
+  onViewLibrary: () => void;
   onExportPNG: () => void;
   onExportPDF: () => void;
   onExportSVG: () => void;
   onExportAdobeSwatches: () => void;
   onExportStudioCode: () => void;
+  canAddMore: boolean;
 }
 
 export default function PaletteToolbar({ 
+  onAddColor,
+  onViewLibrary,
   onExportPNG, 
   onExportPDF,
   onExportSVG,
   onExportAdobeSwatches,
-  onExportStudioCode
+  onExportStudioCode,
+  canAddMore
 }: PaletteToolbarProps) {
   return (
     <div className="flex items-center justify-center gap-3 flex-wrap">
+      <Button 
+        variant="outline" 
+        onClick={onAddColor}
+        disabled={!canAddMore}
+        data-testid="button-add-color"
+      >
+        <Plus className="w-4 h-4 mr-2" />
+        Add Color
+      </Button>
+      
+      <Button 
+        variant="outline" 
+        onClick={onViewLibrary}
+        data-testid="button-view-library"
+      >
+        <Library className="w-4 h-4 mr-2" />
+        View Library
+      </Button>
+      
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" data-testid="button-export-menu">
