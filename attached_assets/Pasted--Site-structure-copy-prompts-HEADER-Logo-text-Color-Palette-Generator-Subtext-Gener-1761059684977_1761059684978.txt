@@ -1,0 +1,111 @@
+🖥️ Site structure + copy prompts
+HEADER
+- Logo text: “🎨 Color Palette Generator”
+- Subtext: “Generate stunning color palettes in seconds — lock, shuffle, save, and export your favorites.”
+
+HERO
+- Badge: “Free, Fast & No Sign-Up”
+- H1: “Build Your Perfect Color Palette”
+  - The word “Color” has the animated rainbow gradient like the Converter site.
+- Subhead: “Shuffle random palettes, lock your favorites, and explore ready-made palettes.”
+- Primary button: “Shuffle Palette”
+- Secondary button: “Add Color”
+- Small action link: “Clear All”
+- Ad placeholder (100px) below hero.
+
+TOOL UI
+- Show 5 default colors (random).
+- Each color card should display:
+   • Large color preview
+   • HEX value (click to copy)
+   • Small “Lock” icon toggle (locked state = outlined lock; unlocked = open)
+   • Optional delete “×”
+- Shuffle button re-randomizes all unlocked colors.
+- Add button adds a new color (up to 8).
+- Clear resets to 5 random colors.
+- Toolbar below palette: 
+   • “Export PNG” | “Export PDF” | “Save Palette” | “View Library”
+
+PALETTE LIBRARY
+- Section title: “Browse Popular Palettes”
+- Subtext: “Need inspiration? Explore curated color sets designed by The Color Palette Studio.”
+- Display 4–6 per row, card style with mini palette previews (horizontal strips).
+- Example palette names: “Warm Neutrals,” “Coastal Dawn,” “Retro Candy,” “Fresh Citrus,” “Bold & Modern.”
+- Clicking one loads those colors into the generator.
+
+EDUCATION BLOCKS (SEO)
+1. What Is a Color Palette Generator?
+   Short paragraph explaining how this tool helps designers, brands, and creators quickly find harmonious color combinations for their projects.
+2. How to Use It
+   Step 1: Click “Shuffle” to generate random palettes.
+   Step 2: Lock colors you love.
+   Step 3: Export or save your final palette.
+3. Tips for Finding Great Color Palettes
+   - Keep a balance of brights + neutrals.
+   - Test in both light and dark backgrounds.
+   - Start with 1–2 anchor colors and build around them.
+4. Use Cases
+   “Perfect for brand design, websites, logos, packaging, social media templates, and more.”
+
+FAQ (accordion)
+- How do I lock a color?
+  → Click the lock icon below any swatch to prevent it from changing when you shuffle.
+- Can I add or remove colors?
+  → Yes, add up to 8 or remove extras anytime.
+- Can I copy HEX codes?
+  → Click a color’s code to instantly copy it to your clipboard.
+- Can I save my favorite palettes?
+  → Yes, saved palettes stay in your browser for quick access.
+- Is it free to use?
+  → 100% free — no login or watermark.
+- Can I use these palettes commercially?
+  → Yes! All generated palettes are royalty-free.
+
+FOOTER
+- Left: “Made with ❤️ by The Color Palette Studio”
+- Right links: Privacy · Terms · Contact
+- Subnav: “Explore more free tools → Color Palette Tester · Color Code Converter · Harmony Generator”
+
+📈 SEO prompt
+Meta title: Free Color Palette Generator | Lock, Shuffle & Export Custom Palettes
+Meta description: Generate random color palettes in seconds. Lock favorite colors, shuffle new combinations, and export your palette as PNG or PDF. Free & fast.
+OG title: Free Color Palette Generator
+OG description: Instantly generate, lock, and export stunning color palettes for design projects.
+Canonical: https://thecolorpalettegenerator.com/
+Schema: SoftwareApplication (name, description, url, offer price=0), FAQPage with 3–4 top questions.
+
+🎨 Design prompt
+Visual style: 
+- Same Inter font and spacing as the Converter and Tester sites.
+- Palette cards: tall rectangles (like Coolors), with subtle shadow, large color fill, code + icons.
+- Rainbow accent on “Color” in H1 (gentle animation).
+- Primary button = near-black with white text.
+- Secondary buttons = white with thin border.
+- Subtle rounded corners (12px) and consistent spacing.
+- Responsive grid (1x5 on desktop, 2x3 on tablet, 1x1 stack on mobile).
+
+💰 Ad experience prompt
+Add three fixed-height ad placeholders:
+- Top: below hero (100px)
+- Middle: between palette tool and library (100px)
+- Bottom: above footer (100px)
+Style: dashed gray border, rounded corners, muted text “Ad space — coming soon.” Maintain vertical rhythm and avoid layout shift.
+
+⚙️ Features prompt (for Replit functionality)
+FUNCTIONALITY REQUIREMENTS
+- “Shuffle Palette” generates random HEX colors (use tinycolor.random()).
+- Each card has Lock/Unlock toggle.
+- “Add Color” inserts new random color card.
+- “Clear All” resets palette.
+- Click HEX to copy.
+- Export PNG: html2canvas → save as 'palette.png'
+- Export PDF: jsPDF → embed canvas
+- Save Palette: store in localStorage as JSON array.
+- Palette Library: array of preset palettes loaded at bottom.
+- When a user clicks a preset, load it into main generator.
+- GA4 events (placeholders): shuffle_click, lock_toggle, export_png, export_pdf, library_load, fixer_cta_click.
+
+📄 Legal + pages
+Create /privacy-policy, /terms, and /contact pages identical in structure to the Color Code Converter versions (replace domain name).
+Add robots.txt and sitemap.xml linking all main routes.
+Include JSON-LD SoftwareApplication schema + FAQPage schema.
