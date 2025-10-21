@@ -1,3 +1,5 @@
+import { Link } from 'wouter';
+import { Button } from '@/components/ui/button';
 import PaletteLibraryCard from './PaletteLibraryCard';
 
 interface Palette {
@@ -8,9 +10,10 @@ interface Palette {
 interface PaletteLibraryProps {
   palettes: Palette[];
   onSelectPalette: (colors: string[]) => void;
+  showViewMore?: boolean;
 }
 
-export default function PaletteLibrary({ palettes, onSelectPalette }: PaletteLibraryProps) {
+export default function PaletteLibrary({ palettes, onSelectPalette, showViewMore = false }: PaletteLibraryProps) {
   return (
     <section className="py-16 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4">
@@ -21,7 +24,7 @@ export default function PaletteLibrary({ palettes, onSelectPalette }: PaletteLib
           </p>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
           {palettes.map((palette) => (
             <PaletteLibraryCard
               key={palette.name}
@@ -31,6 +34,16 @@ export default function PaletteLibrary({ palettes, onSelectPalette }: PaletteLib
             />
           ))}
         </div>
+
+        {showViewMore && (
+          <div className="text-center">
+            <Link href="/palettes">
+              <Button size="lg" variant="outline" data-testid="button-view-more">
+                View All Palettes
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
