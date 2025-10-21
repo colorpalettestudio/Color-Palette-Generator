@@ -431,6 +431,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
+      <AdPlaceholder />
+      
       <AppToolbar
         onAddColor={handleAddColor}
         onViewLibrary={handleViewLibrary}
@@ -442,8 +444,6 @@ export default function Home() {
         onColorsExtracted={handleColorsExtracted}
         canAddMore={palette.length < MAX_COLORS}
       />
-      
-      <AdPlaceholder />
       
       <Hero />
 

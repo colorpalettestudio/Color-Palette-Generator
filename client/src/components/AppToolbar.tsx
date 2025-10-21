@@ -48,16 +48,17 @@ export default function AppToolbar({
   };
 
   return (
-    <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="max-w-7xl mx-auto px-4 py-3">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
+    <div className="bg-black text-white border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          <div className="flex items-center gap-3">
             <Button
               variant="ghost"
               size="sm"
               onClick={onAddColor}
               disabled={!canAddMore}
               data-testid="toolbar-add-color"
+              className="text-white hover:bg-white/10"
             >
               <Plus className="w-4 h-4 mr-2" />
               Add Color
@@ -65,7 +66,12 @@ export default function AppToolbar({
 
             <Dialog open={imageDialogOpen} onOpenChange={setImageDialogOpen}>
               <DialogTrigger asChild>
-                <Button variant="ghost" size="sm" data-testid="toolbar-image-upload">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  data-testid="toolbar-image-upload"
+                  className="text-white hover:bg-white/10"
+                >
                   <ImageIcon className="w-4 h-4 mr-2" />
                   Generate from Image
                 </Button>
@@ -85,12 +91,13 @@ export default function AppToolbar({
             </Dialog>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <Button
               variant="ghost"
               size="sm"
               onClick={onViewLibrary}
               data-testid="toolbar-view-library"
+              className="text-white hover:bg-white/10"
             >
               <Library className="w-4 h-4 mr-2" />
               View Library
@@ -98,7 +105,12 @@ export default function AppToolbar({
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" data-testid="toolbar-export-menu">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  data-testid="toolbar-export-menu"
+                  className="text-white hover:bg-white/10"
+                >
                   <Download className="w-4 h-4 mr-2" />
                   Export
                 </Button>
