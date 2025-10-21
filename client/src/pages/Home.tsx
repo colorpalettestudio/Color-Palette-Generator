@@ -4,13 +4,14 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import Hero from '@/components/Hero';
 import ColorCard from '@/components/ColorCard';
-import PaletteToolbar from '@/components/PaletteToolbar';
+import AppToolbar from '@/components/AppToolbar';
 import AdPlaceholder from '@/components/AdPlaceholder';
 import PaletteLibrary from '@/components/PaletteLibrary';
 import EducationSection from '@/components/EducationSection';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
-import ImageColorExtractor from '@/components/ImageColorExtractor';
+import { Button } from '@/components/ui/button';
+import { Shuffle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PRESET_PALETTES } from '@/lib/palettes';
 
@@ -430,6 +431,18 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
+      <AppToolbar
+        onAddColor={handleAddColor}
+        onViewLibrary={handleViewLibrary}
+        onExportPNG={handleExportPNG}
+        onExportPDF={handleExportPDF}
+        onExportSVG={handleExportSVG}
+        onExportAdobeSwatches={handleExportAdobeSwatches}
+        onExportStudioCode={handleExportStudioCode}
+        onColorsExtracted={handleColorsExtracted}
+        canAddMore={palette.length < MAX_COLORS}
+      />
+      
       <AdPlaceholder />
       
       <Hero />
@@ -459,20 +472,16 @@ export default function Home() {
             ))}
           </div>
 
-          <PaletteToolbar
-            onShuffle={handleShuffle}
-            onAddColor={handleAddColor}
-            onViewLibrary={handleViewLibrary}
-            onExportPNG={handleExportPNG}
-            onExportPDF={handleExportPDF}
-            onExportSVG={handleExportSVG}
-            onExportAdobeSwatches={handleExportAdobeSwatches}
-            onExportStudioCode={handleExportStudioCode}
-            canAddMore={palette.length < MAX_COLORS}
-          />
-
-          <div className="mt-8 max-w-md mx-auto">
-            <ImageColorExtractor onColorsExtracted={handleColorsExtracted} />
+          <div className="flex justify-center">
+            <Button 
+              size="lg"
+              className="text-lg px-8 py-6 h-auto"
+              onClick={handleShuffle}
+              data-testid="button-shuffle"
+            >
+              <Shuffle className="w-5 h-5 mr-2" />
+              Shuffle Palette
+            </Button>
           </div>
         </div>
       </section>
