@@ -96,18 +96,19 @@ Preferred communication style: Simple, everyday language.
 - PNG Export: Captures palette visual using html2canvas
 - PDF Export: Generates document with jsPDF including color swatches and HEX codes
 
-**Preset Library**: 135 curated palettes stored in `lib/palettes.ts` displayed in grid layout with click-to-load functionality.
+**Preset Library**: 135 curated palettes stored in `lib/palettes.ts` displayed in grid layout with click-to-load functionality. All palettes have been seeded with random like counts between 2,300-19,000 to simulate an active community.
 
 **Palette Likes System**:
 - Heart icon on each palette card showing global like count
 - Click to like/unlike palettes (optimistic UI updates)
 - localStorage tracks user's individual liked palettes
-- Database stores global like counts persistently
+- Database stores global like counts persistently (seeded with realistic counts)
 - Error handling with rollback on failed API calls
 - Toast notifications for errors
+- Top 10 most-loved palettes (pre-seeded): Underwater (18,950), Purple Reign (18,297), Coastal Dawn (17,379), Lavender Fields (17,180), Pastel Dream (16,513), Champagne Toast (15,738), Starlight (15,467), Blush & Bashful (15,363), Lavender Mist (14,315), Tangerine Sky (14,304)
 
 **Sorting Options**:
-- Most Loved: Sort by like count (descending)
+- Most Loved (default): Sort by like count (descending)
 - A-Z: Alphabetical by palette name
 - Newest: Reverse order (latest first)
 
