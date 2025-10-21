@@ -507,9 +507,10 @@ export default function Home() {
 
       <div id="palette-library">
         <PaletteLibrary
-          palettes={PRESET_PALETTES.slice(0, 12)}
+          palettes={PRESET_PALETTES}
           onSelectPalette={handleSelectPalette}
           showViewMore={true}
+          limit={12}
         />
       </div>
 

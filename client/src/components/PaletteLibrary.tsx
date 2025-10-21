@@ -16,6 +16,7 @@ interface PaletteLibraryProps {
   palettes: Palette[];
   onSelectPalette: (colors: string[]) => void;
   showViewMore?: boolean;
+  limit?: number;
 }
 
 interface PaletteLike {
@@ -26,7 +27,7 @@ interface PaletteLike {
 
 type SortOption = 'popular' | 'alphabetical' | 'newest';
 
-export default function PaletteLibrary({ palettes, onSelectPalette, showViewMore = false }: PaletteLibraryProps) {
+export default function PaletteLibrary({ palettes, onSelectPalette, showViewMore = false, limit }: PaletteLibraryProps) {
   const [sortBy, setSortBy] = useState<SortOption>('popular');
   const [likedPalettes, setLikedPalettes] = useState<Set<string>>(() => {
     const stored = localStorage.getItem('likedPalettes');
@@ -146,7 +147,7 @@ export default function PaletteLibrary({ palettes, onSelectPalette, showViewMore
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
-          {sortedPalettes.map((palette) => (
+          {(limit ? sortedPalettes.slice(0, limit) : sortedPalettes).map((palette) => (
             <PaletteLibraryCard
               key={palette.name}
               name={palette.name}
