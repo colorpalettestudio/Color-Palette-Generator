@@ -5,7 +5,6 @@ import jsPDF from 'jspdf';
 import Hero from '@/components/Hero';
 import ColorCard from '@/components/ColorCard';
 import AppToolbar from '@/components/AppToolbar';
-import AdPlaceholder from '@/components/AdPlaceholder';
 import PaletteLibrary from '@/components/PaletteLibrary';
 import EducationSection from '@/components/EducationSection';
 import FAQ from '@/components/FAQ';
@@ -460,8 +459,6 @@ export default function Home() {
       />
       
       <div className="min-h-screen bg-background mr-24">
-        <AdPlaceholder />
-        
         <Hero sourceImage={sourceImage} onClearSourceImage={handleClearSourceImage} />
 
       <section className="pt-4 pb-12">
@@ -503,8 +500,6 @@ export default function Home() {
         </div>
       </section>
 
-      <AdPlaceholder />
-
       <div id="palette-library">
         <PaletteLibrary
           palettes={PRESET_PALETTES}
@@ -517,8 +512,6 @@ export default function Home() {
       <EducationSection />
 
       <FAQ />
-
-      <AdPlaceholder />
 
       <Footer />
       </div>

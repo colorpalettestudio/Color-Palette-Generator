@@ -40,7 +40,6 @@
 - H1: Large centered headline with rainbow gradient on "Color"
 - Subhead: 18px supporting text below headline
 - Three-button layout: Primary "Shuffle Palette", Secondary "Add Color", Link "Clear All"
-- Ad placeholder (100px height) with dashed gray border below
 
 **Color Palette Cards** (Primary UI)
 - Tall rectangles (similar to Coolors.co style)
@@ -108,18 +107,6 @@
 **Card Hover**
 - Library cards: slight lift and shadow increase
 - Color cards: subtle border highlight
-
-## Ad Placement Strategy
-Three fixed-height placements (100px each):
-1. **Top**: Below hero section
-2. **Middle**: Between palette tool and library section
-3. **Bottom**: Above footer
-
-**Ad Styling**:
-- Dashed gray border (2px, rounded corners 12px)
-- Muted placeholder text: "Ad space — coming soon"
-- Centered content
-- Maintains vertical rhythm with py-8 spacing
 
 ## Images
 **No large hero images required** - this is a tool-focused microsite. Visual interest comes from:
