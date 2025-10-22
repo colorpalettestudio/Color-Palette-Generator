@@ -98,19 +98,16 @@ Preferred communication style: Simple, everyday language.
 
 **Preset Library**: 135 curated palettes stored in `lib/palettes.ts` displayed in grid layout with click-to-load functionality. All palettes have been seeded with random like counts between 2,300-19,000 to simulate an active community.
 
-**Palette Likes System**:
-- Heart icon on each palette card showing global like count
-- Click to like/unlike palettes (optimistic UI updates)
-- localStorage tracks user's individual liked palettes
-- Database stores global like counts persistently (seeded with realistic counts)
-- Error handling with rollback on failed API calls
-- Toast notifications for errors
-- Top 10 most-loved palettes (pre-seeded): Underwater (18,950), Purple Reign (18,297), Coastal Dawn (17,379), Lavender Fields (17,180), Pastel Dream (16,513), Champagne Toast (15,738), Starlight (15,467), Blush & Bashful (15,363), Lavender Mist (14,315), Tangerine Sky (14,304)
+**Palette Sorting System**:
+- Backend palette like system exists with database persistence (UI hidden)
+- Sorting options: Most Loved (by internal ranking), A-Z (alphabetical), Newest (reverse order)
+- Top 3 most-loved palettes (pre-seeded for sorting): 
+  1. Sunset Glow (29,000 likes)
+  2. Coastal Dawn (19,500 likes)
+  3. Earth & Sky (19,000 likes)
+- Additional top palettes include: Starlight, Purple Reign, Raspberry Sorbet, Tangerine Sky, Underwater, Pastel Dream, Lavender Fields, Coral Reef, Champagne Toast, Blush & Bashful, Lavender Mist
+- Like counts stored in database but not displayed in UI (infrastructure preserved for potential future use)
 
-**Sorting Options**:
-- Most Loved (default): Sort by like count (descending)
-- A-Z: Alphabetical by palette name
-- Newest: Reverse order (latest first)
 
 ### SEO & Content Strategy
 

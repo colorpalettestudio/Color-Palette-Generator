@@ -44,12 +44,34 @@ async function seedLikes() {
       continue;
     }
     
+    // Coastal Dawn is #2 with 19,500 likes
+    if (paletteName === 'Coastal Dawn') {
+      const likeCount = 19500;
+      await sql`
+        INSERT INTO palette_likes (palette_name, like_count)
+        VALUES (${paletteName}, ${likeCount})
+      `;
+      console.log(`✓ ${paletteName}: ${likeCount.toLocaleString()} likes 🥈 #2`);
+      continue;
+    }
+    
+    // Earth & Sky is #3 with 19,000 likes
+    if (paletteName === 'Earth & Sky') {
+      const likeCount = 19000;
+      await sql`
+        INSERT INTO palette_likes (palette_name, like_count)
+        VALUES (${paletteName}, ${likeCount})
+      `;
+      console.log(`✓ ${paletteName}: ${likeCount.toLocaleString()} likes 🥉 #3`);
+      continue;
+    }
+    
     const isTopPalette = TOP_PALETTES.includes(paletteName);
     
-    // Top palettes get 14,000-19,000 likes
+    // Top palettes get 14,000-18,500 likes
     // Regular palettes get 2,300-13,000 likes
     const likeCount = isTopPalette 
-      ? getRandomInt(14000, 19000)
+      ? getRandomInt(14000, 18500)
       : getRandomInt(2300, 13000);
     
     await sql`

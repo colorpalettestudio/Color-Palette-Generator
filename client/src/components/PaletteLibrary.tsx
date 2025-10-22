@@ -1,11 +1,9 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import PaletteLibraryCard from './PaletteLibraryCard';
-import { useQuery, useMutation } from '@tanstack/react-query';
-import { apiRequest, queryClient } from '@/lib/queryClient';
-import { useToast } from '@/hooks/use-toast';
+import { useQuery } from '@tanstack/react-query';
 
 interface Palette {
   name: string;
@@ -29,73 +27,10 @@ type SortOption = 'popular' | 'alphabetical' | 'newest';
 
 export default function PaletteLibrary({ palettes, onSelectPalette, showViewMore = false, limit }: PaletteLibraryProps) {
   const [sortBy, setSortBy] = useState<SortOption>('popular');
-  const [likedPalettes, setLikedPalettes] = useState<Set<string>>(() => {
-    const stored = localStorage.getItem('likedPalettes');
-    return stored ? new Set(JSON.parse(stored)) : new Set();
-  });
-  const { toast } = useToast();
 
   const { data: paletteLikes = [] } = useQuery<PaletteLike[]>({
     queryKey: ['/api/palette-likes'],
   });
-
-  const likeMutation = useMutation({
-    mutationFn: async (paletteName: string) => {
-      return apiRequest('POST', `/api/palette-likes/${encodeURIComponent(paletteName)}/like`);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/palette-likes'] });
-    },
-    onError: (error, paletteName) => {
-      setLikedPalettes(prev => {
-        const next = new Set(prev);
-        next.delete(paletteName);
-        return next;
-      });
-      toast({
-        title: "Failed to like palette",
-        description: "Please try again later",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const unlikeMutation = useMutation({
-    mutationFn: async (paletteName: string) => {
-      return apiRequest('POST', `/api/palette-likes/${encodeURIComponent(paletteName)}/unlike`);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/palette-likes'] });
-    },
-    onError: (error, paletteName) => {
-      setLikedPalettes(prev => new Set(prev).add(paletteName));
-      toast({
-        title: "Failed to unlike palette",
-        description: "Please try again later",
-        variant: "destructive",
-      });
-    },
-  });
-
-  useEffect(() => {
-    localStorage.setItem('likedPalettes', JSON.stringify(Array.from(likedPalettes)));
-  }, [likedPalettes]);
-
-  const handleLike = (paletteName: string) => {
-    const isLiked = likedPalettes.has(paletteName);
-    
-    if (isLiked) {
-      setLikedPalettes(prev => {
-        const next = new Set(prev);
-        next.delete(paletteName);
-        return next;
-      });
-      unlikeMutation.mutate(paletteName);
-    } else {
-      setLikedPalettes(prev => new Set(prev).add(paletteName));
-      likeMutation.mutate(paletteName);
-    }
-  };
 
   const likesMap = useMemo(() => {
     return paletteLikes.reduce((acc, like) => {
@@ -153,9 +88,6 @@ export default function PaletteLibrary({ palettes, onSelectPalette, showViewMore
               name={palette.name}
               colors={palette.colors}
               onClick={() => onSelectPalette(palette.colors)}
-              likeCount={likesMap[palette.name] || 0}
-              isLiked={likedPalettes.has(palette.name)}
-              onLike={() => handleLike(palette.name)}
             />
           ))}
         </div>

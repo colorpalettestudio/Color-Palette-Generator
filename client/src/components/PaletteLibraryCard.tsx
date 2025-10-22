@@ -1,22 +1,10 @@
-import { Heart } from 'lucide-react';
-
 interface PaletteLibraryCardProps {
   name: string;
   colors: string[];
   onClick: () => void;
-  likeCount?: number;
-  isLiked?: boolean;
-  onLike?: (e: React.MouseEvent) => void;
 }
 
-function formatLikeCount(count: number): string {
-  if (count >= 1000) {
-    return Math.round(count / 1000) + 'k';
-  }
-  return count.toString();
-}
-
-export default function PaletteLibraryCard({ name, colors, onClick, likeCount = 0, isLiked = false, onLike }: PaletteLibraryCardProps) {
+export default function PaletteLibraryCard({ name, colors, onClick }: PaletteLibraryCardProps) {
   return (
     <div
       onClick={onClick}
@@ -33,24 +21,7 @@ export default function PaletteLibraryCard({ name, colors, onClick, likeCount = 
         ))}
       </div>
       <div className="p-4">
-        <div className="flex items-center justify-between">
-          <p className="font-medium flex-1 text-left">{name}</p>
-          {onLike && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onLike(e);
-              }}
-              className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              data-testid={`button-like-${name.toLowerCase().replace(/\s+/g, '-')}`}
-            >
-              <Heart 
-                className={`w-4 h-4 ${isLiked ? 'fill-red-500 text-red-500' : ''}`}
-              />
-              <span>{formatLikeCount(likeCount)}</span>
-            </button>
-          )}
-        </div>
+        <p className="font-medium text-left">{name}</p>
       </div>
     </div>
   );
