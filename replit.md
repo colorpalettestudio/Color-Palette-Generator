@@ -96,6 +96,19 @@ Preferred communication style: Simple, everyday language.
 - PNG Export: Captures palette visual using html2canvas
 - PDF Export: Generates document with jsPDF including color swatches and HEX codes
 
+**How to Use Section**:
+- Instructional section positioned between palette tool and library
+- Light muted background for visual separation
+- 6-step grid layout explaining generator features:
+  1. Shuffle Colors (keyboard shortcut: Space)
+  2. Lock Favorites
+  3. Click to Customize (color picker)
+  4. Copy HEX Codes
+  5. Export Your Palette (multiple formats)
+  6. Browse Presets
+- Cards with icons, hover effects, and clear instructions
+- Component: `HowToUse.tsx`
+
 **Preset Library**: 135 curated palettes stored in `lib/palettes.ts` displayed in grid layout with click-to-load functionality. All palettes have been seeded with random like counts between 2,300-19,000 to simulate an active community.
 
 **Palette Sorting System**:

@@ -59,6 +59,18 @@
 - Equal-width buttons: "Export PNG" | "Export PDF" | "Save Palette" | "View Library"
 - Secondary button style with icons
 
+**How to Use Section**
+- Positioned between palette tool and library section
+- Light muted background for visual separation
+- Centered heading: "How to Use the Color Palette Generator" with rainbow accent
+- 6-step grid layout (3 columns on desktop, responsive)
+- Each step card includes:
+  - Icon in primary-colored circle
+  - Numbered heading
+  - Clear instruction text
+- Steps cover: Shuffle, Lock, Click to Customize, Copy HEX, Export, Browse Presets
+- Cards have subtle shadow and hover-elevate effect
+
 **Palette Library Section**
 - Section title: "Browse Popular Palettes" with supporting subtext
 - Card grid: 4-6 cards per row (desktop), responsive down to 2-1

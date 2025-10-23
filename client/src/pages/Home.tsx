@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import ColorCard from '@/components/ColorCard';
 import AppToolbar from '@/components/AppToolbar';
 import PaletteLibrary from '@/components/PaletteLibrary';
+import HowToUse from '@/components/HowToUse';
 import ColorFixerAd from '@/components/ColorFixerAd';
 import EducationSection from '@/components/EducationSection';
 import FAQ from '@/components/FAQ';
@@ -500,6 +501,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <HowToUse />
 
       <div id="palette-library">
         <PaletteLibrary
