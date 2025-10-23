@@ -98,7 +98,7 @@ export default function Home() {
 
     document.addEventListener('keydown', handleKeyPress);
     return () => document.removeEventListener('keydown', handleKeyPress);
-  }, [historyIndex, history, palette]);
+  }, [palette, historyIndex, history, imageColorPool]);
 
   useEffect(() => {
     const selectedPalette = localStorage.getItem('selectedPalette');

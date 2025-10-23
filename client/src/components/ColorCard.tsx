@@ -111,9 +111,15 @@ export default function ColorCard({
         <Button
           variant="ghost"
           size="icon"
-          onClick={onToggleLock}
+          onClick={(e) => {
+            onToggleLock();
+            e.currentTarget.blur();
+          }}
           className="hover-elevate active-elevate-2"
+          aria-pressed={isLocked}
+          aria-label={isLocked ? "Unlock color" : "Lock color"}
           data-testid={`button-lock-${color}`}
+          data-locked={isLocked ? "true" : "false"}
         >
           {isLocked ? (
             <Lock className="w-4 h-4" />
