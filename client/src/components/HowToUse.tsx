@@ -1,6 +1,56 @@
 import { Lightbulb, Lock, Plus, Download, Image, Shuffle } from 'lucide-react';
 
 export default function HowToUse() {
+  const highlightElement = (selector: string) => {
+    const element = document.querySelector(selector) as HTMLElement;
+    
+    if (!element) {
+      return;
+    }
+
+    // Scroll to element
+    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Add highlight animation with inline styles for better compatibility
+    const originalBoxShadow = element.style.boxShadow;
+    const originalTransition = element.style.transition;
+    
+    element.style.transition = 'box-shadow 0.3s ease';
+    element.style.boxShadow = '0 0 0 4px hsl(var(--primary)), 0 0 0 6px hsl(var(--background))';
+    
+    // Remove highlight after 2 seconds
+    setTimeout(() => {
+      element.style.transition = originalTransition;
+      element.style.boxShadow = originalBoxShadow;
+    }, 2000);
+  };
+
+  const handleStepClick = (step: number) => {
+    switch (step) {
+      case 1: // Shuffle Colors
+        highlightElement('[data-testid="toolbar-shuffle"]');
+        break;
+      case 2: // Lock Favorites
+        highlightElement('[data-testid="palette-grid"]');
+        break;
+      case 3: // Upload Image
+        highlightElement('[data-testid="toolbar-image-upload"]');
+        break;
+      case 4: // Add or Remove Colors
+        highlightElement('[data-testid="toolbar-add-color"]');
+        break;
+      case 5: // Export
+        highlightElement('[data-testid="toolbar-export-menu"]');
+        break;
+      case 6: // Browse Presets
+        const libraryElement = document.getElementById('palette-library');
+        if (libraryElement) {
+          libraryElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        break;
+    }
+  };
+
   return (
     <section className="py-16 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4">
@@ -15,7 +65,11 @@ export default function HowToUse() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {/* Step 1 */}
-          <div className="bg-background rounded-xl p-6 shadow-sm hover-elevate transition-all" data-testid="howto-step-1">
+          <div 
+            onClick={() => handleStepClick(1)}
+            className="bg-background rounded-xl p-6 shadow-sm hover-elevate transition-all cursor-pointer" 
+            data-testid="howto-step-1"
+          >
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Shuffle className="w-6 h-6 text-primary" />
             </div>
@@ -28,7 +82,11 @@ export default function HowToUse() {
           </div>
 
           {/* Step 2 */}
-          <div className="bg-background rounded-xl p-6 shadow-sm hover-elevate transition-all" data-testid="howto-step-2">
+          <div 
+            onClick={() => handleStepClick(2)}
+            className="bg-background rounded-xl p-6 shadow-sm hover-elevate transition-all cursor-pointer" 
+            data-testid="howto-step-2"
+          >
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Lock className="w-6 h-6 text-primary" />
             </div>
@@ -41,7 +99,11 @@ export default function HowToUse() {
           </div>
 
           {/* Step 3 */}
-          <div className="bg-background rounded-xl p-6 shadow-sm hover-elevate transition-all" data-testid="howto-step-3">
+          <div 
+            onClick={() => handleStepClick(3)}
+            className="bg-background rounded-xl p-6 shadow-sm hover-elevate transition-all cursor-pointer" 
+            data-testid="howto-step-3"
+          >
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Image className="w-6 h-6 text-primary" />
             </div>
@@ -54,7 +116,11 @@ export default function HowToUse() {
           </div>
 
           {/* Step 4 */}
-          <div className="bg-background rounded-xl p-6 shadow-sm hover-elevate transition-all" data-testid="howto-step-4">
+          <div 
+            onClick={() => handleStepClick(4)}
+            className="bg-background rounded-xl p-6 shadow-sm hover-elevate transition-all cursor-pointer" 
+            data-testid="howto-step-4"
+          >
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Plus className="w-6 h-6 text-primary" />
             </div>
@@ -67,7 +133,11 @@ export default function HowToUse() {
           </div>
 
           {/* Step 5 */}
-          <div className="bg-background rounded-xl p-6 shadow-sm hover-elevate transition-all" data-testid="howto-step-5">
+          <div 
+            onClick={() => handleStepClick(5)}
+            className="bg-background rounded-xl p-6 shadow-sm hover-elevate transition-all cursor-pointer" 
+            data-testid="howto-step-5"
+          >
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Download className="w-6 h-6 text-primary" />
             </div>
@@ -80,7 +150,11 @@ export default function HowToUse() {
           </div>
 
           {/* Step 6 */}
-          <div className="bg-background rounded-xl p-6 shadow-sm hover-elevate transition-all" data-testid="howto-step-6">
+          <div 
+            onClick={() => handleStepClick(6)}
+            className="bg-background rounded-xl p-6 shadow-sm hover-elevate transition-all cursor-pointer" 
+            data-testid="howto-step-6"
+          >
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Lightbulb className="w-6 h-6 text-primary" />
             </div>

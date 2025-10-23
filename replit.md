@@ -116,6 +116,7 @@ Preferred communication style: Simple, everyday language.
   5. Export Your Palette (multiple formats)
   6. Browse Presets
 - Cards with icons, hover effects, and clear instructions
+- Interactive feature: Clicking any instruction card scrolls to and highlights the corresponding toolbar button/section for 2 seconds
 - Component: `HowToUse.tsx`
 
 **Preset Library**: 135 curated palettes stored in `lib/palettes.ts` displayed in grid layout with click-to-load functionality. All palettes have been seeded with random like counts between 2,300-19,000 to simulate an active community.
