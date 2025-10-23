@@ -108,6 +108,18 @@
 - Library cards: slight lift and shadow increase
 - Color cards: subtle border highlight
 
+**Color Palette Fixer Advertisement**
+- Positioned between palette tool and library section for contextual relevance
+- Two-column layout (text left, product image right)
+- Gradient background (blue-50 to purple-50) for visual distinction
+- "New Tool Available" badge with sparkle icon
+- Compelling headline: "Got a palette that needs fixing?"
+- Three bullet points highlighting key features (checkmark icons)
+- CTA button: "Try Color Palette Fixer" with external link icon
+- Product image showing the Fixer tool interface
+- Shadow-xl card with hover-elevate interaction
+- Links to: https://thecolorpaletterfixer.com
+
 ## Images
 **No large hero images required** - this is a tool-focused microsite. Visual interest comes from:
 - Rainbow gradient accent on "Color" text

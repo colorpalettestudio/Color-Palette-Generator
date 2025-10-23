@@ -108,6 +108,15 @@ Preferred communication style: Simple, everyday language.
 - Additional top palettes include: Starlight, Purple Reign, Raspberry Sorbet, Tangerine Sky, Underwater, Pastel Dream, Lavender Fields, Coral Reef, Champagne Toast, Blush & Bashful, Lavender Mist
 - Like counts stored in database but not displayed in UI (infrastructure preserved for potential future use)
 
+**Color Palette Fixer Advertisement**:
+- Eye-catching promotional section positioned between palette tool and library section
+- Two-column layout with gradient background (blue-purple gradient)
+- Features product image (uploaded asset) showing the Fixer tool interface
+- Compelling copy highlighting AI-powered palette harmonization
+- Three key benefits with checkmark icons
+- Call-to-action button linking to https://thecolorpaletterfixer.com
+- Contextually relevant: appears after users generate/shuffle palettes, before browsing library
+- Component: `ColorFixerAd.tsx` with hover-elevate interaction
 
 ### SEO & Content Strategy
 
