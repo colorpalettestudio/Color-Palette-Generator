@@ -113,7 +113,7 @@
 - Two-column layout (text left, product image right)
 - Gradient background (blue-50 to purple-50) for visual distinction
 - "Palette Not Perfect?" badge with sparkle icon
-- Compelling headline: "Got a palette that needs fixing?"
+- Frustration-based headline: "Want to get this palette brand-ready?"
 - Tagline emphasizes: "Using math, not AI"
 - Three bullet points highlighting key features:
   - Instantly identifies what's off (too bright, too flat, low contrast)

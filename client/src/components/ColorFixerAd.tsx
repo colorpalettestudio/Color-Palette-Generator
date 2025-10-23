@@ -16,7 +16,7 @@ export default function ColorFixerAd() {
               </div>
               
               <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
-                Got a palette that needs fixing?
+                Want to get this palette brand-ready?
               </h2>
               
               <p className="text-lg text-muted-foreground leading-relaxed">

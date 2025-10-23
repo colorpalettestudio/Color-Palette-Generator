@@ -113,6 +113,7 @@ Preferred communication style: Simple, everyday language.
 - Two-column layout with gradient background (blue-purple gradient)
 - Features clickable product image (uploaded asset) showing the Fixer tool interface
 - "Palette Not Perfect?" badge replaces previous "New Tool Available" badge
+- Frustration-based headline: "Want to get this palette brand-ready?"
 - Compelling copy emphasizing "math, not AI" for palette harmonization
 - Three key benefits with checkmark icons:
   - Instantly identifies what's off (too bright, too flat, low contrast)
