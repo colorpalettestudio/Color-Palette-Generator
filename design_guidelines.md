@@ -109,12 +109,17 @@
 - Color cards: subtle border highlight
 
 **Color Palette Fixer Advertisement**
-- Positioned between palette tool and library section for contextual relevance
+- Positioned after palette library section, before educational content
 - Two-column layout (text left, product image right)
 - Gradient background (blue-50 to purple-50) for visual distinction
 - "New Tool Available" badge with sparkle icon
 - Compelling headline: "Got a palette that needs fixing?"
-- Three bullet points highlighting key features (checkmark icons)
+- Tagline emphasizes: "Using math, not AI"
+- Four bullet points highlighting key features:
+  - Detects colors that are too vibrant, saturated, dark, or light
+  - Smart palette suggestions for perfect color harmony
+  - Export to PNG, PDF, Adobe Swatches, and more
+  - Maintain brand consistency with mathematical precision
 - CTA button: "Try Color Palette Fixer" with external link icon
 - Product image showing the Fixer tool interface
 - Shadow-xl card with hover-elevate interaction

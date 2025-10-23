@@ -501,8 +501,6 @@ export default function Home() {
         </div>
       </section>
 
-      <ColorFixerAd />
-
       <div id="palette-library">
         <PaletteLibrary
           palettes={PRESET_PALETTES}
@@ -511,6 +509,8 @@ export default function Home() {
           limit={12}
         />
       </div>
+
+      <ColorFixerAd />
 
       <EducationSection />
 
