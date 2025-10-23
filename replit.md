@@ -115,7 +115,13 @@ Preferred communication style: Simple, everyday language.
   5. Export Your Palette (multiple formats)
   6. Browse Presets
 - Cards with icons, hover effects, and clear instructions
-- Interactive feature: Clicking any instruction card scrolls to and highlights the corresponding toolbar button/section for 2 seconds
+- Interactive feature: Clicking any instruction card scrolls to and highlights the corresponding UI element for 2 seconds:
+  - Step 1: Highlights Shuffle button in toolbar
+  - Step 2: Highlights first color card (showing lock icon location) with 6px primary ring + subtle scale
+  - Step 3: Highlights Upload Image button in toolbar
+  - Step 4: Highlights Add Color button in toolbar  
+  - Step 5: Highlights Export dropdown in toolbar
+  - Step 6: Scrolls to Palette Library section
 - Component: `HowToUse.tsx`
 
 **Preset Library**: 135 curated palettes stored in `lib/palettes.ts` displayed in grid layout with click-to-load functionality. All palettes have been seeded with random like counts between 2,300-19,000 to simulate an active community.

@@ -30,8 +30,48 @@ export default function HowToUse() {
       case 1: // Shuffle Colors
         highlightElement('[data-testid="toolbar-shuffle"]');
         break;
-      case 2: // Lock Favorites
-        highlightElement('[data-testid="palette-grid"]');
+      case 2: // Lock Favorites - highlight the first color card to show where lock button is
+        // Find the first color card's outer wrapper (the one with overflow-hidden)
+        const colorCardInner = document.querySelector('[data-testid^="color-card-"]') as HTMLElement;
+        
+        if (colorCardInner) {
+          // Get the parent element which has the overflow-hidden and rounded-xl classes
+          const colorCardWrapper = colorCardInner.parentElement as HTMLElement;
+          
+          if (colorCardWrapper) {
+            // Scroll to and highlight the wrapper
+            colorCardWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Temporarily remove overflow-hidden to show box-shadow
+            const originalOverflow = colorCardWrapper.style.overflow;
+            
+            colorCardWrapper.style.overflow = 'visible';
+            colorCardWrapper.style.transition = 'all 0.3s ease';
+            colorCardWrapper.style.boxShadow = '0 0 0 6px hsl(var(--primary))';
+            colorCardWrapper.style.transform = 'scale(1.02)';
+            
+            // Also highlight the lock button within this card
+            const lockButton = colorCardWrapper.querySelector('[data-testid^="button-lock-"]') as HTMLElement;
+            if (lockButton) {
+              lockButton.style.animation = 'pulse 1s ease-in-out 2';
+            }
+            
+            setTimeout(() => {
+              colorCardWrapper.style.overflow = originalOverflow;
+              colorCardWrapper.style.boxShadow = '';
+              colorCardWrapper.style.transform = '';
+              if (lockButton) {
+                lockButton.style.animation = '';
+              }
+            }, 2000);
+          } else {
+            // Fallback to highlighting the inner element
+            highlightElement('[data-testid^="color-card-"]');
+          }
+        } else {
+          // Fallback to palette grid if no color card found
+          highlightElement('[data-testid="palette-grid"]');
+        }
         break;
       case 3: // Upload Image
         highlightElement('[data-testid="toolbar-image-upload"]');
