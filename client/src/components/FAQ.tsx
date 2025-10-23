@@ -12,15 +12,15 @@ const faqs = [
   },
   {
     question: "Can I add or remove colors?",
-    answer: "Yes, add up to 8 or remove extras anytime."
+    answer: "Yes, add up to 10 or remove extras anytime."
   },
   {
     question: "Can I copy HEX codes?",
     answer: "Click a color's code to instantly copy it to your clipboard."
   },
   {
-    question: "Can I save my favorite palettes?",
-    answer: "Yes, saved palettes stay in your browser for quick access."
+    question: "How do I export my palette?",
+    answer: "Use the export button to download your palette as PNG, PDF, SVG, Adobe Swatches, or VS Code theme."
   },
   {
     question: "Is it free to use?",

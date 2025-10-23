@@ -51,7 +51,6 @@ Preferred communication style: Simple, everyday language.
 ### Data Storage Solutions
 
 **Primary Storage**: Browser localStorage for:
-- Saved user palettes
 - User preferences
 - Selected palette state (when navigating from library)
 - User's liked palettes (for tracking which palettes the user has liked)

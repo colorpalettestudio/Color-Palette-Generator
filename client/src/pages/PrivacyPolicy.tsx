@@ -26,7 +26,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-2xl font-bold text-foreground mb-3">Information We Collect</h2>
             <p>
-              Our tool works entirely in your browser. We do not collect, store, or transmit any personal information to our servers. All palette generation, saving, and exporting happens locally on your device.
+              Our tool works entirely in your browser. We do not collect, store, or transmit any personal information to our servers. All palette generation and exporting happens locally on your device.
             </p>
             <p>
               We may use Google Analytics to collect anonymous usage data such as page views, session duration, and general geographic location. This helps us improve the tool.
@@ -36,7 +36,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-2xl font-bold text-foreground mb-3">Local Storage</h2>
             <p>
-              When you save palettes, they are stored in your browser's local storage. This data never leaves your device and can be cleared at any time through your browser settings.
+              We may use your browser's local storage for temporary preferences and settings. This data never leaves your device and can be cleared at any time through your browser settings.
             </p>
           </section>
           

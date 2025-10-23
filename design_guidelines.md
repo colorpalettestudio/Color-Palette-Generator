@@ -62,9 +62,9 @@
   - Mobile: 1x1 stacked
 
 **Toolbar**
-- Horizontal button group below palette
-- Equal-width buttons: "Export PNG" | "Export PDF" | "Save Palette" | "View Library"
-- Secondary button style with icons
+- Fixed right sidebar (96px wide) with vertical icon navigation
+- Icon buttons with labels: Shuffle, Add Color, Upload Image, Library, Export
+- Export dropdown includes: PNG, PDF, SVG, Adobe Swatches, VS Code theme
 
 **How to Use Section**
 - Positioned between palette tool and library section

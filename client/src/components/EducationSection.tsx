@@ -43,7 +43,7 @@ export default function EducationSection() {
                 </div>
                 <div className="flex-1">
                   <p className="text-muted-foreground">
-                    <strong className="text-foreground">Step 3:</strong> Export or save your final palette for use in your projects.
+                    <strong className="text-foreground">Step 3:</strong> Export your final palette for use in your projects.
                   </p>
                 </div>
               </div>
