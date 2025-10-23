@@ -11,6 +11,7 @@ import ColorFixerAd from '@/components/ColorFixerAd';
 import EducationSection from '@/components/EducationSection';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
+import ExportPaletteView from '@/components/ExportPaletteView';
 import { Button } from '@/components/ui/button';
 import { Shuffle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -43,6 +44,7 @@ export default function Home() {
   const [imageColorPool, setImageColorPool] = useState<string[]>([]);
   const [sourceImage, setSourceImage] = useState<string | null>(null);
   const paletteRef = useRef<HTMLDivElement>(null);
+  const exportViewRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
   const updatePalette = (newPalette: ColorState[]) => {
@@ -179,33 +181,13 @@ export default function Home() {
   };
 
   const handleExportPNG = async () => {
-    if (!paletteRef.current) return;
+    if (!exportViewRef.current) return;
 
     try {
-      const canvas = await html2canvas(paletteRef.current, {
+      const canvas = await html2canvas(exportViewRef.current, {
         backgroundColor: '#ffffff',
         scale: 2,
       });
-
-      // Add watermark with background for visibility
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        const text = 'Generated with Color Palette Studio';
-        ctx.font = '12px Arial';
-        const textWidth = ctx.measureText(text).width;
-        const padding = 6;
-        const x = canvas.width - textWidth - padding * 2;
-        const y = canvas.height - 20;
-        
-        // Semi-transparent background
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-        ctx.fillRect(x - padding, y - 2, textWidth + padding * 2, 16);
-        
-        // Text
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-        ctx.textAlign = 'left';
-        ctx.fillText(text, x, y + 10);
-      }
 
       const link = document.createElement('a');
       link.download = 'color-palette.png';
@@ -227,33 +209,13 @@ export default function Home() {
   };
 
   const handleExportPDF = async () => {
-    if (!paletteRef.current) return;
+    if (!exportViewRef.current) return;
 
     try {
-      const canvas = await html2canvas(paletteRef.current, {
+      const canvas = await html2canvas(exportViewRef.current, {
         backgroundColor: '#ffffff',
         scale: 2,
       });
-
-      // Add watermark with background for visibility
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        const text = 'Generated with Color Palette Studio';
-        ctx.font = '12px Arial';
-        const textWidth = ctx.measureText(text).width;
-        const padding = 6;
-        const x = canvas.width - textWidth - padding * 2;
-        const y = canvas.height - 20;
-        
-        // Semi-transparent background
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-        ctx.fillRect(x - padding, y - 2, textWidth + padding * 2, 16);
-        
-        // Text
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-        ctx.textAlign = 'left';
-        ctx.fillText(text, x, y + 10);
-      }
 
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({
@@ -522,6 +484,11 @@ export default function Home() {
       <FAQ />
 
       <Footer />
+      </div>
+
+      {/* Hidden export view for PNG/PDF generation */}
+      <div className="fixed -left-[9999px]" ref={exportViewRef}>
+        <ExportPaletteView colors={palette.map(p => p.color)} />
       </div>
     </>
   );
