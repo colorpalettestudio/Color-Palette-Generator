@@ -99,11 +99,13 @@ Preferred communication style: Simple, everyday language.
 **How to Use Section**:
 - Instructional section positioned between palette tool and library
 - Light muted background for visual separation
+- Plain text heading (no rainbow gradient): "How to Use the Color Palette Generator"
+- Smaller heading size: text-2xl md:text-3xl
 - 6-step grid layout explaining generator features:
   1. Shuffle Colors (keyboard shortcut: Space)
   2. Lock Favorites
-  3. Click to Customize (color picker)
-  4. Copy HEX Codes
+  3. Upload an Image (extract dominant colors)
+  4. Add or Remove Colors (3-10 colors)
   5. Export Your Palette (multiple formats)
   6. Browse Presets
 - Cards with icons, hover effects, and clear instructions

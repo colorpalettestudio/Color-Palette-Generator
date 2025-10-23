@@ -62,13 +62,14 @@
 **How to Use Section**
 - Positioned between palette tool and library section
 - Light muted background for visual separation
-- Centered heading: "How to Use the Color Palette Generator" with rainbow accent
+- Centered heading: "How to Use the Color Palette Generator" (no gradient, plain text)
+- Heading size: text-2xl md:text-3xl (smaller, cleaner)
 - 6-step grid layout (3 columns on desktop, responsive)
 - Each step card includes:
   - Icon in primary-colored circle
   - Numbered heading
   - Clear instruction text
-- Steps cover: Shuffle, Lock, Click to Customize, Copy HEX, Export, Browse Presets
+- Steps cover: Shuffle, Lock, Upload Image, Add/Remove Colors, Export, Browse Presets
 - Cards have subtle shadow and hover-elevate effect
 
 **Palette Library Section**

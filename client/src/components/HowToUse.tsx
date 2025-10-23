@@ -1,12 +1,12 @@
-import { Lightbulb, Lock, Palette, Download, MousePointerClick, Shuffle } from 'lucide-react';
+import { Lightbulb, Lock, Plus, Download, Image, Shuffle } from 'lucide-react';
 
 export default function HowToUse() {
   return (
     <section className="py-16 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            How to Use the <span className="rainbow-text">Color</span> Palette Generator
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            How to Use the Color Palette Generator
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Create beautiful, harmonious color palettes in seconds with these simple steps
@@ -43,26 +43,26 @@ export default function HowToUse() {
           {/* Step 3 */}
           <div className="bg-background rounded-xl p-6 shadow-sm hover-elevate transition-all" data-testid="howto-step-3">
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-              <MousePointerClick className="w-6 h-6 text-primary" />
+              <Image className="w-6 h-6 text-primary" />
             </div>
             <h3 className="text-xl font-semibold text-foreground mb-2">
-              3. Click to Customize
+              3. Upload an Image
             </h3>
             <p className="text-muted-foreground">
-              Click any color swatch to open a color picker and fine-tune the exact shade you need.
+              Upload any image to extract its dominant colors and generate a beautiful palette from your inspiration.
             </p>
           </div>
 
           {/* Step 4 */}
           <div className="bg-background rounded-xl p-6 shadow-sm hover-elevate transition-all" data-testid="howto-step-4">
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-              <Palette className="w-6 h-6 text-primary" />
+              <Plus className="w-6 h-6 text-primary" />
             </div>
             <h3 className="text-xl font-semibold text-foreground mb-2">
-              4. Copy HEX Codes
+              4. Add or Remove Colors
             </h3>
             <p className="text-muted-foreground">
-              Click the HEX code below any color to instantly copy it to your clipboard for use in your projects.
+              Build your perfect palette by adding or removing colors. Create anywhere from 3 to 10 colors to fit your needs.
             </p>
           </div>
 
