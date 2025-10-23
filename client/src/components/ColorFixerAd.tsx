@@ -12,7 +12,7 @@ export default function ColorFixerAd() {
             <div className="p-8 md:p-12 space-y-6">
               <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-primary px-4 py-2 rounded-full text-sm font-medium">
                 <Sparkles className="w-4 h-4" />
-                New Tool Available
+                Palette Not Perfect?
               </div>
               
               <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
@@ -30,7 +30,7 @@ export default function ColorFixerAd() {
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <span>Detects colors that are too vibrant, saturated, dark, or light</span>
+                  <span>Instantly identifies what's off (too bright, too flat, low contrast)</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="mt-1 w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
@@ -38,7 +38,7 @@ export default function ColorFixerAd() {
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <span>Smart palette suggestions for perfect color harmony</span>
+                  <span>Gives you one-click Smart Palette Suggestions™</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="mt-1 w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
@@ -46,15 +46,7 @@ export default function ColorFixerAd() {
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <span>Export to PNG, PDF, Adobe Swatches, and more</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="mt-1 w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
-                    <svg className="w-3 h-3 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <span>Maintain brand consistency with mathematical precision</span>
+                  <span>Makes your colors website-ready, accessible, and balanced</span>
                 </li>
               </ul>
               
@@ -65,7 +57,7 @@ export default function ColorFixerAd() {
                   data-testid="button-try-fixer"
                   asChild
                 >
-                  <a href="https://thecolorpaletterfixer.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://thecolorpalettestudio.com/products/color-palette-fixer" target="_blank" rel="noopener noreferrer">
                     Try Color Palette Fixer
                     <ExternalLink className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </a>
@@ -74,15 +66,20 @@ export default function ColorFixerAd() {
             </div>
 
             {/* Image */}
-            <div className="relative h-full min-h-[400px] md:min-h-[500px]">
+            <a 
+              href="https://thecolorpalettestudio.com/products/color-palette-fixer" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="relative h-full min-h-[400px] md:min-h-[500px] block group"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20" />
               <img 
                 src={fixerImage} 
                 alt="Color Palette Fixer tool showing smart palette suggestions" 
-                className="absolute inset-0 w-full h-full object-cover object-center"
+                className="absolute inset-0 w-full h-full object-cover object-center group-hover:opacity-95 transition-opacity cursor-pointer"
                 data-testid="img-fixer-product"
               />
-            </div>
+            </a>
           </div>
         </div>
       </div>

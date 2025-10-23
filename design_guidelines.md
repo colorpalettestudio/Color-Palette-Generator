@@ -112,18 +112,17 @@
 - Positioned after palette library section, before educational content
 - Two-column layout (text left, product image right)
 - Gradient background (blue-50 to purple-50) for visual distinction
-- "New Tool Available" badge with sparkle icon
+- "Palette Not Perfect?" badge with sparkle icon
 - Compelling headline: "Got a palette that needs fixing?"
 - Tagline emphasizes: "Using math, not AI"
-- Four bullet points highlighting key features:
-  - Detects colors that are too vibrant, saturated, dark, or light
-  - Smart palette suggestions for perfect color harmony
-  - Export to PNG, PDF, Adobe Swatches, and more
-  - Maintain brand consistency with mathematical precision
+- Three bullet points highlighting key features:
+  - Instantly identifies what's off (too bright, too flat, low contrast)
+  - Gives you one-click Smart Palette Suggestions™
+  - Makes your colors website-ready, accessible, and balanced
 - CTA button: "Try Color Palette Fixer" with external link icon
-- Product image showing the Fixer tool interface
+- Product image showing the Fixer tool interface (clickable)
 - Shadow-xl card with hover-elevate interaction
-- Links to: https://thecolorpaletterfixer.com
+- Links to: https://thecolorpalettestudio.com/products/color-palette-fixer
 
 ## Images
 **No large hero images required** - this is a tool-focused microsite. Visual interest comes from:

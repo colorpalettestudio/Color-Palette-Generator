@@ -111,14 +111,15 @@ Preferred communication style: Simple, everyday language.
 **Color Palette Fixer Advertisement**:
 - Eye-catching promotional section positioned after palette library, before educational content
 - Two-column layout with gradient background (blue-purple gradient)
-- Features product image (uploaded asset) showing the Fixer tool interface
+- Features clickable product image (uploaded asset) showing the Fixer tool interface
+- "Palette Not Perfect?" badge replaces previous "New Tool Available" badge
 - Compelling copy emphasizing "math, not AI" for palette harmonization
-- Four key benefits with checkmark icons:
-  - Detects colors that are too vibrant, saturated, dark, or light
-  - Smart palette suggestions for perfect color harmony
-  - Export to PNG, PDF, Adobe Swatches, and more
-  - Maintain brand consistency with mathematical precision
-- Call-to-action button linking to https://thecolorpaletterfixer.com
+- Three key benefits with checkmark icons:
+  - Instantly identifies what's off (too bright, too flat, low contrast)
+  - Gives you one-click Smart Palette Suggestions™
+  - Makes your colors website-ready, accessible, and balanced
+- Call-to-action button linking to https://thecolorpalettestudio.com/products/color-palette-fixer
+- Product image also clickable, linking to the same URL
 - Contextually relevant: appears after users browse library palettes
 - Component: `ColorFixerAd.tsx` with hover-elevate interaction
 
