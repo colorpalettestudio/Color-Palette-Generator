@@ -41,6 +41,13 @@
 - Subhead: 18px supporting text below headline
 - Three-button layout: Primary "Shuffle Palette", Secondary "Add Color", Link "Clear All"
 
+**Generator Section Container**
+- Minimum height: 70vh (70% of viewport height)
+- Flexbox vertical centering: creates spacious, centered presentation
+- Contains Hero and palette tool sections
+- Increased padding: pt-8 pb-16 for generous spacing
+- Larger gap between palette grid and shuffle button (mb-12)
+
 **Color Palette Cards** (Primary UI)
 - Tall rectangles (similar to Coolors.co style)
 - Large color fill preview (minimum 200px height)

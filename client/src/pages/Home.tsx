@@ -461,46 +461,48 @@ export default function Home() {
       />
       
       <div className="min-h-screen bg-background mr-24">
-        <Hero sourceImage={sourceImage} onClearSourceImage={handleClearSourceImage} />
+        <div className="min-h-[70vh] flex flex-col justify-center">
+          <Hero sourceImage={sourceImage} onClearSourceImage={handleClearSourceImage} />
 
-      <section className="pt-4 pb-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div 
-            ref={paletteRef}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8"
-            data-testid="palette-grid"
-          >
-            {palette.map((item, index) => (
-              <ColorCard
-                key={index}
-                color={item.color}
-                isLocked={item.isLocked}
-                onToggleLock={() => handleToggleLock(index)}
-                onRemove={() => handleRemoveColor(index)}
-                canRemove={palette.length > MIN_COLORS}
-                onCopy={handleCopyColor}
-                onColorChange={(newColor) => handleColorChange(index, newColor)}
-                onDragStart={() => handleDragStart(index)}
-                onDragOver={(e) => handleDragOver(e, index)}
-                onDragEnd={handleDragEnd}
-                isDragging={draggedIndex === index}
-              />
-            ))}
-          </div>
+          <section className="pt-8 pb-16">
+            <div className="max-w-7xl mx-auto px-4">
+              <div 
+                ref={paletteRef}
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12"
+                data-testid="palette-grid"
+              >
+                {palette.map((item, index) => (
+                  <ColorCard
+                    key={index}
+                    color={item.color}
+                    isLocked={item.isLocked}
+                    onToggleLock={() => handleToggleLock(index)}
+                    onRemove={() => handleRemoveColor(index)}
+                    canRemove={palette.length > MIN_COLORS}
+                    onCopy={handleCopyColor}
+                    onColorChange={(newColor) => handleColorChange(index, newColor)}
+                    onDragStart={() => handleDragStart(index)}
+                    onDragOver={(e) => handleDragOver(e, index)}
+                    onDragEnd={handleDragEnd}
+                    isDragging={draggedIndex === index}
+                  />
+                ))}
+              </div>
 
-          <div className="flex justify-center">
-            <Button 
-              size="lg"
-              className="text-lg px-8 py-6 h-auto"
-              onClick={handleShuffle}
-              data-testid="button-shuffle"
-            >
-              <Shuffle className="w-5 h-5 mr-2" />
-              Shuffle Palette
-            </Button>
-          </div>
+              <div className="flex justify-center">
+                <Button 
+                  size="lg"
+                  className="text-lg px-8 py-6 h-auto"
+                  onClick={handleShuffle}
+                  data-testid="button-shuffle"
+                >
+                  <Shuffle className="w-5 h-5 mr-2" />
+                  Shuffle Palette
+                </Button>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
 
       <HowToUse />
 

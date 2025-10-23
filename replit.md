@@ -84,9 +84,16 @@ Preferred communication style: Simple, everyday language.
 
 ### User Interface Features
 
+**Generator Section Layout**:
+- Minimum viewport height: 70vh (70% of screen height)
+- Flexbox vertical centering for balanced presentation
+- Increased padding (pt-8 pb-16) for generous spacing
+- Larger gap (mb-12) between palette grid and shuffle button
+- Creates spacious, focused generator experience
+
 **Palette Manipulation**:
 - Shuffle: Regenerates unlocked colors while preserving locked ones
-- Add/Remove: Dynamic palette size (3-8 colors minimum-maximum)
+- Add/Remove: Dynamic palette size (3-10 colors minimum-maximum)
 - Drag & Drop: Reorder colors via HTML5 drag API
 - Manual Color Picking: Click color to open native color picker
 - Copy HEX: Click code to copy to clipboard with toast feedback
