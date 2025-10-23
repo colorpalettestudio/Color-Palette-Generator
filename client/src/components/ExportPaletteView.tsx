@@ -1,4 +1,5 @@
 import { Palette } from 'lucide-react';
+import logoColorful from '@assets/logo-colorful_1761235081073.png';
 
 interface ExportPaletteViewProps {
   colors: string[];
@@ -53,9 +54,15 @@ export default function ExportPaletteView({ colors }: ExportPaletteViewProps) {
       </div>
 
       {/* Footer */}
-      <div className="text-center pt-8 border-t border-border">
-        <p className="text-muted-foreground">
-          Created by the Color Palette Studio
+      <div className="flex flex-col items-center pt-8 border-t border-border gap-3">
+        <img 
+          src={logoColorful} 
+          alt="Color Palette Studio" 
+          className="h-12"
+          style={{ height: '48px' }}
+        />
+        <p className="text-muted-foreground text-base">
+          https://thecolorpalettestudio.com/
         </p>
       </div>
     </div>
