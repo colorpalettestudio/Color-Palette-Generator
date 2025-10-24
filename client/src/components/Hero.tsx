@@ -41,11 +41,11 @@ export default function Hero({ sourceImage, onClearSourceImage }: HeroProps) {
         )}
         
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight">
-          Color Palette <span className="rainbow-text rainbow-text-animated">Generator</span>
+          Free Color Palette <span className="rainbow-text rainbow-text-animated">Generator</span> - Create, Lock & Export Custom Color Schemes
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-          Shuffle random palettes, lock your favorites, and explore ready-made palettes.
+          Generate random color palettes instantly. Lock your favorite colors, shuffle new combinations, and export professional color schemes for design projects.
         </p>
       </div>
     </section>
