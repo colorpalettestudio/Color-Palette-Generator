@@ -64,7 +64,7 @@ export default function PaletteLibrary({ palettes, onSelectPalette, showViewMore
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold mb-3">Browse Popular Palettes</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Need inspiration? Explore curated color sets designed by The Color Palette Studio.
+            Need inspiration? Explore curated color sets designed by <a href="https://thecolorpalettestudio.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">The Color Palette Studio</a>.
           </p>
         </div>
 
