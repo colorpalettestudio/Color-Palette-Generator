@@ -1,0 +1,178 @@
+Got it—here’s a concise note you can paste back to Replit so they fix the exact collision that’s making Vercel serve `dist/index.js` instead of your `index.html`.
+
+---
+
+## Please make these changes so the Vercel deploy serves the client UI
+
+**Problem:** The server build is emitting a file at `dist/index.js`, which takes priority over the static site. My client build is at `dist/public/index.html`, and Vercel is showing the server JS as text.
+
+**Goal:** Completely separate frontend and backend outputs, and make Vercel only serve the frontend folder as the Output Directory. API should run only from `/api` serverless functions.
+
+### 1) Change the server build output (so nothing lands in `dist/`)
+
+* If the server is compiled with `tsc` or `tsup`, set its output to **`server-dist/`** (or similar).
+* Update config accordingly:
+
+**tsconfig.json (server)**
+
+```json
+{
+  "compilerOptions": {
+    "outDir": "server-dist",
+    "rootDir": "server",
+    "module": "ESNext",
+    "target": "ES2020",
+    "moduleResolution": "Bundler",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "strict": true
+  },
+  "include": ["server/**/*", "shared/**/*"]
+}
+```
+
+**package.json (server build script)**
+
+```json
+{
+  "scripts": {
+    "build:server": "tsc -p tsconfig.json"
+  }
+}
+```
+
+> Key point: **Do not** emit `dist/index.js` anymore. All server output should go to `server-dist/`. On Vercel we won’t run the server; only the `/api/*` functions will handle API.
+
+### 2) Keep the client build where Vercel expects it
+
+You already have Vite outputting to `dist/public`. That’s fine. Please confirm:
+
+**vite.config.ts**
+
+```ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path'
+
+export default defineConfig({
+  plugins: [react()],
+  root: path.resolve(import.meta.dirname, 'client'),
+  build: {
+    outDir: path.resolve(import.meta.dirname, 'dist/public'),
+    emptyOutDir: true
+  }
+})
+```
+
+**package.json (root)**
+
+```json
+{
+  "scripts": {
+    "build": "vite build"
+  }
+}
+```
+
+### 3) Ensure Vercel only serves the client build
+
+* In Vercel Project Settings:
+
+  * **Framework Preset:** Vite
+  * **Build Command:** `npm run build`
+  * **Output Directory:** `dist/public`
+  * **Root Directory:** leave blank (unless the code actually lives in a subfolder)
+* Do **not** run `build:server` on Vercel. The server won’t be used there.
+
+### 4) Keep APIs in serverless functions only
+
+* Leave `api/index.js` (or better, convert each route) to serverless functions and mirror my Express routes:
+
+**/api/palette-likes/index.ts**
+
+```ts
+import { storage } from '../../server/storage'  // reuse your storage layer
+
+export default async function handler(req, res) {
+  if (req.method !== 'GET') return res.status(405).end()
+  try {
+    const likes = await storage.getAllPaletteLikes()
+    res.status(200).json(likes)
+  } catch (e) {
+    console.error(e)
+    res.status(500).json({ error: 'Failed to fetch palette likes' })
+  }
+}
+```
+
+**/api/palette-likes/[paletteName]/like.ts**
+
+```ts
+import { storage } from '../../../server/storage'
+
+export default async function handler(req, res) {
+  if (req.method !== 'POST') return res.status(405).end()
+  const { paletteName } = req.query
+  if (!paletteName || typeof paletteName !== 'string' || paletteName.trim() === '' || paletteName.length > 100) {
+    return res.status(400).json({ error: 'Invalid palette name' })
+  }
+  try {
+    const result = await storage.likePalette(paletteName)
+    res.status(200).json(result)
+  } catch (e) {
+    console.error(e)
+    res.status(500).json({ error: 'Failed to like palette' })
+  }
+}
+```
+
+**/api/palette-likes/[paletteName]/unlike.ts**
+
+```ts
+import { storage } from '../../../server/storage'
+
+export default async function handler(req, res) {
+  if (req.method !== 'POST') return res.status(405).end()
+  const { paletteName } = req.query
+  if (!paletteName || typeof paletteName !== 'string' || paletteName.trim() === '' || paletteName.length > 100) {
+    return res.status(400).json({ error: 'Invalid palette name' })
+  }
+  try {
+    const result = await storage.unlikePalette(paletteName)
+    res.status(200).json(result)
+  } catch (e) {
+    console.error(e)
+    res.status(500).json({ error: 'Failed to unlike palette' })
+  }
+}
+```
+
+> These replace the Express endpoints on Vercel. The Neon `DATABASE_URL` should be available as an env var.
+
+### 5) vercel.json (optional but helpful SPA fallback)
+
+Please keep it minimal—no custom build config—just SPA rewrites:
+
+```json
+{
+  "routes": [
+    { "src": "^/api/.*", "dest": "/api" },
+    { "src": ".*", "dest": "/" }
+  ]
+}
+```
+
+This ensures client-side routes fall back to `index.html`; APIs still go to `/api`.
+
+### 6) Redeploy cleanly
+
+* Delete any existing `dist/` artifacts in the repo.
+* Commit the changes above.
+* Push to GitHub.
+* In Vercel, create a **new** deployment from the Project page (not “redeploy previous”), so it uses current Project Settings.
+* Confirm the new deploy shows `index.html` as the top-level document (Network tab → Content-Type: `text/html`).
+
+---
+
+**TL;DR to Replit:**
+Please move server build output to `server-dist/` (so nothing writes to `dist/`), keep Vite at `dist/public`, don’t run server build on Vercel, and keep API as serverless under `/api`. Right now `dist/index.js` is shadowing my static site—once that file stops existing in `dist/`, Vercel will serve `dist/public/index.html` and the app UI will load.
