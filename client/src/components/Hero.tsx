@@ -10,7 +10,7 @@ export default function Hero({ sourceImage, onClearSourceImage }: HeroProps) {
     <section className="pt-12 pb-8 text-center">
       <div className="max-w-5xl mx-auto px-4 relative">
         <div className="inline-block px-4 py-1.5 rounded-full bg-muted text-sm font-medium mb-6">
-          Made by a Designer for Designers · Free & No Sign-Up
+          Free, Instant, and No Signup
         </div>
         
         {sourceImage && onClearSourceImage && (
@@ -45,7 +45,7 @@ export default function Hero({ sourceImage, onClearSourceImage }: HeroProps) {
         </h1>
         
         <h2 className="text-xl md:text-2xl font-semibold mb-5 text-foreground">
-          Create, Lock & Export Custom Color Schemes
+          Made by a Designer for Designers
         </h2>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
