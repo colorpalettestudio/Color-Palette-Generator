@@ -40,13 +40,9 @@ export default function Hero({ sourceImage, onClearSourceImage }: HeroProps) {
           </div>
         )}
         
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3 leading-tight">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight">
           Color Palette <span className="rainbow-text rainbow-text-animated">Generator</span>
         </h1>
-        
-        <h2 className="text-xl md:text-2xl font-semibold mb-5 text-foreground">
-          Made by a Designer for Designers
-        </h2>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
           Generate random color palettes instantly, lock your favorite colors, shuffle new combinations, and export professional color schemes ready for design projects.
