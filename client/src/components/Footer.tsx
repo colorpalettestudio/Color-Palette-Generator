@@ -23,10 +23,6 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        
-        <div className="text-center text-sm text-muted-foreground">
-          <p>Explore more free tools → Color Palette Tester · Color Code Converter · Harmony Generator</p>
-        </div>
       </div>
     </footer>
   );
