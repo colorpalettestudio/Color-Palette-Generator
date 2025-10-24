@@ -49,7 +49,7 @@ export default function Hero({ sourceImage, onClearSourceImage }: HeroProps) {
         </h2>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-          Built by a graphic designer who understands your workflow. Generate random color palettes instantly, lock your favorite colors, shuffle new combinations, and export professional color schemes ready for design projects.
+          Generate random color palettes instantly, lock your favorite colors, shuffle new combinations, and export professional color schemes ready for design projects.
         </p>
       </div>
     </section>
