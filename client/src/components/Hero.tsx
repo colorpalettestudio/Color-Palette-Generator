@@ -9,7 +9,7 @@ export default function Hero({ sourceImage, onClearSourceImage }: HeroProps) {
   return (
     <section className="pt-12 pb-8 text-center">
       <div className="max-w-5xl mx-auto px-4 relative">
-        <div className="inline-block px-4 py-1.5 rounded-full bg-muted text-sm font-medium mb-6">
+        <div className="inline-block px-5 py-2 rounded-full bg-muted text-base font-medium mb-6">
           Free, Instant, and No Signup
         </div>
         
