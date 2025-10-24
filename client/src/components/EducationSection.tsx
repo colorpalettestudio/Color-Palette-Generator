@@ -12,7 +12,7 @@ export default function EducationSection() {
             </p>
             <h3 className="text-lg font-semibold mb-3 text-foreground">Why Use a Color Palette Generator?</h3>
             <p className="text-muted-foreground leading-relaxed">
-              Professional designers rely on color generators to explore countless combinations in seconds, ensuring their projects have cohesive, on-brand color schemes that enhance visual appeal and user experience.
+              Professional designers rely on color generators to explore countless combinations in seconds, ensuring their projects have cohesive, on-brand color schemes that enhance visual appeal and user experience. Unlike engineer-built tools, this generator was crafted by a graphic designer who understands the nuances of color selection, export formats, and real-world design workflows.
             </p>
           </div>
           

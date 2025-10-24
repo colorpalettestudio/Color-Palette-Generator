@@ -10,7 +10,7 @@ export default function Hero({ sourceImage, onClearSourceImage }: HeroProps) {
     <section className="pt-12 pb-8 text-center">
       <div className="max-w-5xl mx-auto px-4 relative">
         <div className="inline-block px-4 py-1.5 rounded-full bg-muted text-sm font-medium mb-6">
-          Free, Instant & No Sign-Up Needed
+          Made by a Designer for Designers · Free & No Sign-Up
         </div>
         
         {sourceImage && onClearSourceImage && (
@@ -49,7 +49,7 @@ export default function Hero({ sourceImage, onClearSourceImage }: HeroProps) {
         </h2>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-          Generate random color palettes instantly. Lock your favorite colors, shuffle new combinations, and export professional color schemes for design projects.
+          Built by a graphic designer who understands your workflow. Generate random color palettes instantly, lock your favorite colors, shuffle new combinations, and export professional color schemes ready for design projects.
         </p>
       </div>
     </section>
