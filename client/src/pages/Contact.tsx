@@ -22,9 +22,19 @@ export default function Contact() {
               For general inquiries, support, or partnership opportunities, please email us at:
             </p>
             <p className="text-lg">
-              <a href="mailto:hello@thecolorpalettestudio.com" className="text-primary hover:underline">
-                hello@thecolorpalettestudio.com
+              <a href="mailto:sam@thecolorpalettestudio.com" className="text-primary hover:underline">
+                sam@thecolorpalettestudio.com
               </a>
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-foreground mb-3">Mailing Address</h2>
+            <p className="text-foreground">
+              The Color Palette Studio<br />
+              923 Oldham Dr #202<br />
+              Nolensville, TN 37135<br />
+              United States
             </p>
           </section>
           
@@ -39,6 +49,13 @@ export default function Contact() {
             <h2 className="text-2xl font-bold text-foreground mb-3">Business Inquiries</h2>
             <p>
               Interested in advertising opportunities or partnerships? Please include "Business Inquiry" in your email subject line.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-foreground mb-3">Privacy & Legal</h2>
+            <p>
+              For questions about our privacy practices, please review our <Link href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</Link> or <Link href="/terms" className="text-primary hover:underline">Terms of Service</Link>.
             </p>
           </section>
           
